@@ -1,34 +1,84 @@
+/*
+ * Dependencies
+ */
+require("dotenv").config();
+
 const express = require("express");
-const path = require("path");
-const favicon = require("serve-favicon");
-const logger = require("morgan");
 
 const app = express();
 
+const path = require("path");
+
+const favicon = require("serve-favicon");
+
+const logger = require("morgan");
+
+const ensureLoggedIn = require("./config/ensureLoggedIn");
+/*
+// const cors = require("cors")
+ */
+
+/*
+ *Globals
+ */
+const PORT = process.env.PORT ?? 3001;
+/*
+// const whitelist = ["http://localhost:3000", "http://localhost:3001"];
+// const corsOptions = {
+//   orgin: function (orgin, callback) {
+//     if (whitelist.indexOf(orgin) != -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+// };
+*/
+/*
+ *Database
+ */
+require("./config/database");
+
+/*
+ *Middleware
+ */
+
 app.use(logger("dev"));
+
+// app.use(cors(corsOptions))
+
 app.use(express.json());
 
-// Configure both serve-favicon & static middleware
-// to serve from the production 'build' folder
 app.use(favicon(path.join(__dirname, "build", "favicon.ico")));
+
 app.use(express.static(path.join(__dirname, "build")));
 
+app.use((req, res, next) => {
+  res.locals.data = {};
+  next();
+});
+
+app.use(require("./config/checkToken"));
+/*
+ * Routes
+ */
+
 // Put API routes here, before the "catch all" route
+app.use("/api/user", require("./routes/api/users"));
 
 app.get("/api", (req, res) => {
   res.json({ message: "The API is alive!!!" });
 });
-
+//Authentication required routes
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-// Configure to use port 3001 instead of 3000 during
-// development to avoid collision with React's dev server
-const port = process.env.PORT || 3001;
-
-app.listen(port, function () {
-  console.log(`Express app running on port ${port}`);
+/*
+ * Listener
+ */
+app.listen(PORT, function () {
+  console.log(`Express app running on port ${PORT}`);
 });
