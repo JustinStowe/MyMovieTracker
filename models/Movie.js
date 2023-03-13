@@ -6,6 +6,7 @@ const movieSchema = new mongoose.Schema({
   imdbID: { type: String },
   type: { type: String },
   poster: { type: String },
+  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
 });
 
 const Movie = mongoose.model("Movie", movieSchema);

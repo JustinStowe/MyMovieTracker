@@ -12,12 +12,17 @@ const path = require("path");
 const favicon = require("serve-favicon");
 
 const logger = require("morgan");
+
+const ensureLoggedIn = require("./config/ensureLoggedIn");
+/*
 // const cors = require("cors")
+ */
 
 /*
  *Globals
  */
 const PORT = process.env.PORT ?? 3001;
+/*
 // const whitelist = ["http://localhost:3000", "http://localhost:3001"];
 // const corsOptions = {
 //   orgin: function (orgin, callback) {
@@ -28,6 +33,7 @@ const PORT = process.env.PORT ?? 3001;
 //     }
 //   },
 // };
+*/
 /*
  *Database
  */
@@ -51,16 +57,19 @@ app.use((req, res, next) => {
   res.locals.data = {};
   next();
 });
+
+app.use(require("./config/checkToken"));
 /*
  * Routes
  */
 
 // Put API routes here, before the "catch all" route
+app.use("/api/user", require("./routes/api/users"));
 
 app.get("/api", (req, res) => {
   res.json({ message: "The API is alive!!!" });
 });
-
+//Authentication required routes
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests
 app.get("/*", function (req, res) {
