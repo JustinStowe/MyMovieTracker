@@ -4,7 +4,7 @@ const dataController = {
   //index
   async index(req, res, next) {
     try {
-      const foundMovies = await Movie.find({});
+      const foundMovies = await Movie.find({}).populate("comments").exec();
       console.log("all the movies", foundMovies);
       return res.json(foundMovies);
     } catch (error) {
@@ -56,3 +56,14 @@ const dataController = {
     next();
   },
 };
+
+const apiController = {
+  index(req, res, next) {
+    res.json(res.locals.data.fruits);
+  },
+  show(req, res, next) {
+    res.json(res.locals.data.fruit);
+  },
+};
+
+module.exports = { dataController, apiController };
