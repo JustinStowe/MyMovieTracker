@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-export default function Search() {
+export default function Search({ user, setUser }) {
   const [input, setInput] = useState("");
   const [moviesImdb, setMoviesImdb] = useState([]);
 

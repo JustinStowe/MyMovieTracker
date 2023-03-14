@@ -1,6 +1,7 @@
-import { logOut } from "../../utilities/users-service";
+import { logOut } from "../../utilities/user-services";
 
 export default function UserLogOut({ user, setUser }) {
+  console.log(user);
   function handleLogOut() {
     logOut();
     setUser(null);
@@ -9,11 +10,11 @@ export default function UserLogOut({ user, setUser }) {
   return (
     <div className="">
       <p>LogOut</p>
-      {/* <div>{user.name}</div>
+      <div>{user.name}</div>
       <div className="">{user.email}</div>
       <button className="btn-sm" onClick={handleLogOut}>
         LOG OUT
-      </button> */}
+      </button>
     </div>
   );
 }

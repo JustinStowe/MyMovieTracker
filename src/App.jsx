@@ -13,14 +13,17 @@ import AuthPage from "./pages/AuthPage/AuthPage";
 
 function App() {
   const [user, setUser] = useState(getUser());
+  console.log("App", user);
   return (
     <div className="App">
       {user ? (
         <>
-          <Header />
-          <Aside />
-          <Search />
-          <AuthPage />
+
+          <Header user={user} setUser={setUser} />
+          <Aside user={user} setUser={setUser} />
+          <Search user={user} setUser={setUser} />
+          <AuthPage user={user} setUser={setUser} />
+
 
           <Routes>
             <Route
