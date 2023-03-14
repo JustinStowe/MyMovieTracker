@@ -16,34 +16,34 @@ function App() {
   console.log("App", user);
   return (
     <div className="App">
-      {/* {user ? ( */}
-      <>
-        <Header />
-        <Aside />
-        <Search />
-        <AuthPage />
+      {user ? (
+        <>
+          <Header user={user} setUser={setUser} />
+          <Aside user={user} setUser={setUser} />
+          <Search user={user} setUser={setUser} />
+          <AuthPage user={user} setUser={setUser} />
 
-        <Routes>
-          <Route
-            path="/moviestowatch"
-            element={<MoviesToWatch user={user} setUser={setUser} />}
-          />
-          <Route
-            path="/watchedmovies"
-            element={<WatchedMovies user={user} setUser={setUser} />}
-          />
-          <Route
-            path="/movie"
-            element={<SingleMovie user={user} setUser={setUser} />}
-          />
+          <Routes>
+            <Route
+              path="/moviestowatch"
+              element={<MoviesToWatch user={user} setUser={setUser} />}
+            />
+            <Route
+              path="/watchedmovies"
+              element={<WatchedMovies user={user} setUser={setUser} />}
+            />
+            <Route
+              path="/movie"
+              element={<SingleMovie user={user} setUser={setUser} />}
+            />
 
-          {/* redirect to /orders/new if path in address bar hasn't matched a <Route> above */}
-          <Route path="/*" element={<Navigate to="/" />} />
-        </Routes>
-      </>
-      {/* ) : (
+            {/* redirect to /orders/new if path in address bar hasn't matched a <Route> above */}
+            <Route path="/*" element={<Navigate to="/" />} />
+          </Routes>
+        </>
+      ) : (
         <AuthPage setUser={setUser} />
-      )} */}
+      )}
     </div>
   );
 }

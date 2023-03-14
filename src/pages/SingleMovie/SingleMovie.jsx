@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useController } from "../../Controller";
 import Header from "../../components/Header/Header";
 
-export function SingleMovie() {
+export function SingleMovie({ user, setUser }) {
   const { movie, deleteMovie } = useController();
 
   const [text, setText] = useState("");

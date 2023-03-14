@@ -4,7 +4,9 @@ const dataController = {
   //index
   async index(req, res, next) {
     try {
-      const foundMovies = await Movie.find({}).populate("comments").exec();
+      const foundMovies = await Movie.find(req.user._id)
+        .populate("comments")
+        .exec();
       console.log("all the movies", foundMovies);
       return res.json(foundMovies);
     } catch (error) {
@@ -14,6 +16,7 @@ const dataController = {
   },
   //destroy
   async destroy(req, res, next) {
+    const { id } = req.params;
     try {
       const deleteMovie = await Movie.findByIdAndDelete(id);
       console.log("the deleted movie", deleteMovie);
@@ -25,6 +28,7 @@ const dataController = {
   },
   //update
   async update(req, res, next) {
+    const { id } = req.params;
     try {
       const updatedMovie = await Movie.findByIdAndUpdate(id);
       console.log("The updated Movie", updatedMovie);
@@ -37,7 +41,7 @@ const dataController = {
   //create
   async create(req, res, next) {
     try {
-      const newMovie = await Movie.create({ ...req.body });
+      const newMovie = await Movie.create({ ...req.body }, req.user._id);
       console.log("the new movie", newMovie);
       return newMovie;
     } catch (error) {
@@ -48,6 +52,7 @@ const dataController = {
   //edit
   //show
   async show(req, res, next) {
+    const { id } = req.params;
     try {
       const targetMovie = await Movie.FindByID(id);
       console.log(targetMovie);

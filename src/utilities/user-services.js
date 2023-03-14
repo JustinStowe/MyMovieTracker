@@ -1,6 +1,7 @@
 import * as usersAPI from "./user-api";
 
 export async function signUp(userData) {
+  console.log("userData", userData);
   // Delete the network request code to the
   // users-api.js module which will ultimately
   // return the JWT
