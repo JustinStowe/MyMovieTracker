@@ -32,7 +32,7 @@ function useHook() {
 
   async function getAllMovies() {
     try {
-      const results = await movieService.getAllMovies();
+      const results = await movieService.getAll();
       setMovies(results);
     } catch (error) {
       console.error(error);
@@ -41,7 +41,7 @@ function useHook() {
 
   async function getSingleMovie(id) {
     try {
-      const results = await movieService.getOneMovie(id);
+      const results = await movieService.getById(id);
       return results;
     } catch (error) {
       console.error(error);
@@ -50,7 +50,7 @@ function useHook() {
 
   async function deleteMovie(id) {
     try {
-      await movieService.deleteMovie(id);
+      await movieService.deleteById(id);
       const indexToRemove = movies.findIndex((movie) => movie._id === id);
       if (indexToRemove !== null && indexToRemove !== undefined) {
         const moviesCopy = [...movies];

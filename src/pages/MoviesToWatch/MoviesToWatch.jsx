@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import { Link } from "react-router-dom";
 
-export default function MoviesToWatch() {
+export default function MoviesToWatch({ user, setUser }) {
   const { getAllMovies, movies, deleteMovie, watchedMovie } = useController();
   console.log(movies);
 

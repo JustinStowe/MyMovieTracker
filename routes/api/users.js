@@ -5,7 +5,7 @@ const {
   checkToken,
   dataController,
   apiController,
-} = require("../../controllers/api/users");
+} = require("../../controllers/api/userController");
 const ensureLoggedIn = require("../../config/ensureLoggedIn");
 
 // Post /api/users/login
