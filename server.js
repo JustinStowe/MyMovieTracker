@@ -21,7 +21,7 @@ const ensureLoggedIn = require("./config/ensureLoggedIn");
 /*
  *Globals
  */
-const PORT = process.env.PORT ?? 3001;
+const PORT = process.env.PORT || 3001;
 /*
 // const whitelist = ["http://localhost:3000", "http://localhost:3001"];
 // const corsOptions = {
@@ -64,7 +64,7 @@ app.use(require("./config/checkToken"));
  */
 
 // Put API routes here, before the "catch all" route
-app.use("/api/user", require("./routes/api/users"));
+app.use("/api/users", require("./routes/api/users"));
 // Protect the API routes below from anonymous users
 
 app.use("/api/movies", ensureLoggedIn, require("./routes/api/movies"));
