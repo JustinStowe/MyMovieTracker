@@ -65,7 +65,8 @@ app.use(require("./config/checkToken"));
 
 // Put API routes here, before the "catch all" route
 app.use("/api/user", require("./routes/api/users"));
-app.use("/api/movies", require("./controllers/api/movie"));
+
+app.use("/api/movies", ensureLoggedIn, require("./routes/api/movies"));
 app.get("/api", (req, res) => {
   res.json({ message: "The API is alive!!!" });
 });
