@@ -1,4 +1,4 @@
-import * as usersAPI from "./users-api";
+import * as usersAPI from "./user-api";
 
 export async function signUp(userData) {
   // Delete the network request code to the

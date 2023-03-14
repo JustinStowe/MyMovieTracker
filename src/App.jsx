@@ -7,12 +7,13 @@ import { SingleMovie } from "./pages/SingleMovie/SingleMovie";
 import Search from "./components/Search/Search";
 import Header from "./components/Header/Header";
 import Aside from "./components/Aside/Aside";
-import { getUser } from "./utilities/users-service";
+import { getUser } from "./utilities/user-services";
 
 import AuthPage from "./pages/AuthPage/AuthPage";
 
 function App() {
   const [user, setUser] = useState(getUser());
+  console.log("App", user);
   return (
     <div className="App">
       {/* {user ? ( */}
