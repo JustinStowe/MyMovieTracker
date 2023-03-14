@@ -65,11 +65,7 @@ app.use(require("./config/checkToken"));
 
 // Put API routes here, before the "catch all" route
 app.use("/api/user", require("./routes/api/users"));
-
-app.use(require("./config/checkToken"));
-
 // Protect the API routes below from anonymous users
-const ensureLoggedIn = require("./config/ensureLoggedIn");
 app.use("/api/movies", ensureLoggedIn, require("./routes/api/movies"));
 
 app.get("/api", (req, res) => {
