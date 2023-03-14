@@ -18,10 +18,12 @@ function App() {
     <div className="App">
       {user ? (
         <>
+
           <Header user={user} setUser={setUser} />
           <Aside user={user} setUser={setUser} />
           <Search user={user} setUser={setUser} />
           <AuthPage user={user} setUser={setUser} />
+
 
           <Routes>
             <Route
