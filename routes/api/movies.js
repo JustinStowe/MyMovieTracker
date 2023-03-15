@@ -3,7 +3,7 @@ const router = express.Router();
 const {
   dataController,
   apiController,
-} = require("../../controllers/api/movie");
+} = require("../../controllers/api/movieController");
 
 /*
  *Routes
