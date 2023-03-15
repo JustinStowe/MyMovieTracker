@@ -1,0 +1,21 @@
+.Header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  background-color: rgb(34, 33, 33);
+  margin: 10px;
+  border-radius: 5px;
+  border: solid 20px rgb(22, 19, 19);
+}
+.Header .button {
+  background-color: gold;
+  width: 150px;
+  height: 50px;
+  font-size: large;
+}
+
+.Header .Link {
+  text-decoration: none;
+  color: black;
+}

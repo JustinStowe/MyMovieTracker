@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import movieService from "./utilities/movies-api";
+import * as movieApi from "./utilities/movies-api";
 
 const ControllerContext = createContext({});
 
@@ -18,6 +18,7 @@ export const useController = () => {
 
 function useHook() {
   const [movies, setMovies] = useState([]);
+  console.log("Control movies", movies);
 
   async function watchedMovie(id, e) {
     try {
@@ -32,7 +33,7 @@ function useHook() {
 
   async function getAllMovies() {
     try {
-      const results = await movieService.getAll();
+      const results = await movieApi.getAll();
       setMovies(results);
     } catch (error) {
       console.error(error);
@@ -41,7 +42,7 @@ function useHook() {
 
   async function getSingleMovie(id) {
     try {
-      const results = await movieService.getById(id);
+      const results = await movieApi.getById(id);
       return results;
     } catch (error) {
       console.error(error);
@@ -50,7 +51,7 @@ function useHook() {
 
   async function deleteMovie(id) {
     try {
-      await movieService.deleteById(id);
+      await movieApi.deleteById(id);
       const indexToRemove = movies.findIndex((movie) => movie._id === id);
       if (indexToRemove !== null && indexToRemove !== undefined) {
         const moviesCopy = [...movies];
