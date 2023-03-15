@@ -14,26 +14,12 @@ const favicon = require("serve-favicon");
 const logger = require("morgan");
 
 const ensureLoggedIn = require("./config/ensureLoggedIn");
-/*
-// const cors = require("cors")
- */
 
 /*
  *Globals
  */
 const PORT = process.env.PORT || 3001;
-/*
-// const whitelist = ["http://localhost:3000", "http://localhost:3001"];
-// const corsOptions = {
-//   orgin: function (orgin, callback) {
-//     if (whitelist.indexOf(orgin) != -1) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-// };
-*/
+
 /*
  *Database
  */
@@ -44,8 +30,6 @@ require("./config/database");
  */
 
 app.use(logger("dev"));
-
-// app.use(cors(corsOptions))
 
 app.use(express.json());
 
