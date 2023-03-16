@@ -1,4 +1,5 @@
 import { logOut } from "../../utilities/user-services";
+import styles from "./LogOut.module.scss";
 
 export default function UserLogOut({ user, setUser }) {
   console.log(user);
@@ -8,7 +9,7 @@ export default function UserLogOut({ user, setUser }) {
   }
 
   return (
-    <div className="">
+    <div className={styles.LogOut}>
       <p>LogOut</p>
       <div>{user.name}</div>
       <div className="">{user.email}</div>

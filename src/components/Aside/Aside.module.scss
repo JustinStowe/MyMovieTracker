@@ -1,0 +1,11 @@
+.Aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 30px;
+  align-items: center;
+  margin: 3vmin 2vmin;
+  background-color: rgb(34, 33, 33);
+  border-radius: 3px;
+  border: solid 20px rgb(22, 19, 19);
+}

@@ -23,6 +23,7 @@ const dataController = {
   async login(req, res, next) {
     try {
       const user = await User.findOne({ email: req.body.email });
+      console.log("User in controller", user);
       if (!user) throw new Error();
       const match = await bcrypt.compare(req.body.password, user.password);
       if (!match) throw new Error();
