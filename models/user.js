@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema(
       minLength: 3,
       required: true,
     },
+    picture: { type: String, required: false },
     comments: [
       {
         type: mongoose.Schema.Types.ObjectId,
