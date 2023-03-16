@@ -45,6 +45,7 @@ const dataController = {
       console.log("the new movie", newMovie);
       return newMovie;
     } catch (error) {
+      console.log("create movie error", error);
       res.status(500).json({ error });
     }
     next();
@@ -57,7 +58,10 @@ const dataController = {
       const targetMovie = await Movie.FindByID(id);
       console.log(targetMovie);
       return targetMovie;
-    } catch (error) {}
+    } catch (error) {
+      console.log("show movie error", error);
+      res.status(500).json({ error });
+    }
     next();
   },
 };

@@ -30,6 +30,7 @@ const dataController = {
       res.locals.data.token = createJWT(user);
       next();
     } catch (error) {
+      console.log("The log in error", error);
       res.status(400).json("Bad Cedentials");
     }
   },
