@@ -45,11 +45,8 @@ const dataController = {
       console.log("the new movie", newMovie);
       return newMovie;
     } catch (error) {
-<<<<<<< HEAD:controllers/api/movie.js
-      console.log("router", error);
-=======
       console.log("create movie error", error);
->>>>>>> 085bab9be2ec6159bc7c642007801b21491c074d:controllers/api/movieController.js
+
       res.status(500).json({ error });
     }
     next();
