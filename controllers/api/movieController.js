@@ -46,7 +46,10 @@ const dataController = {
       return newMovie;
     } catch (error) {
       console.log("create movie error", error);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1457f20f3890c47bbaddaefb83587f97667a5157
       res.status(500).json({ error });
     }
     next();

@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1457f20f3890c47bbaddaefb83587f97667a5157
 const bcrypt = require("bcrypt");
 
 const SALT_ROUNDS = 6;
@@ -16,7 +19,10 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1457f20f3890c47bbaddaefb83587f97667a5157
       minLength: 3,
       required: true,
     },
@@ -46,4 +52,4 @@ userSchema.pre("save", async function (next) {
 });
 const User = mongoose.model("User", userSchema);
 
-module.exports = model("User", userSchema);
+module.exports = User;
