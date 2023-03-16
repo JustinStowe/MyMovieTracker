@@ -13,3 +13,8 @@ export function getById(id) {
 export function deleteById(id) {
   return sendRequest(`${BASE_URL}/${id}`);
 }
+
+export function addMovie(movieData) {
+  console.log("Api movieData", movieData);
+  return sendRequest(BASE_URL, "POST", movieData);
+}

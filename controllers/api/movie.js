@@ -45,6 +45,7 @@ const dataController = {
       console.log("the new movie", newMovie);
       return newMovie;
     } catch (error) {
+      console.log("router", error);
       res.status(500).json({ error });
     }
     next();
@@ -67,6 +68,7 @@ const apiController = {
     res.json(res.locals.data.fruits);
   },
   show(req, res, next) {
+    console.log("Res full", res);
     res.json(res.locals.data.fruit);
   },
 };

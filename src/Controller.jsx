@@ -48,7 +48,14 @@ function useHook() {
       console.error(error);
     }
   }
-
+  async function addMovies(movie) {
+    try {
+      const newMovie = await movieApi.addMovie(movie);
+      setMovies((currentMovies) => [...currentMovies, newMovie]);
+    } catch (error) {
+      console.error(error);
+    }
+  }
   async function deleteMovie(id) {
     try {
       await movieApi.deleteById(id);
@@ -68,5 +75,6 @@ function useHook() {
     getSingleMovie,
     deleteMovie,
     watchedMovie,
+    addMovies,
   };
 }

@@ -4,11 +4,12 @@ import Header from "../../components/Header/Header";
 import { useController } from "../../Controller";
 import Aside from "../../components/Aside/Aside";
 import styles from "./Search.module.scss";
+import { addMovie } from "../../utilities/movies-api";
 
 export default function Search({ user, setUser }) {
   const [input, setInput] = useState("");
   const [moviesImdb, setMoviesImdb] = useState([]);
-  const { movies, setMovies } = useController();
+  const { movies, addMovies } = useController();
 
   const getMoviesImdb = async () => {
     const searchTerm = `${input}&type=movie`;
@@ -57,8 +58,7 @@ export default function Search({ user, setUser }) {
           <div>
             {moviesImdb.map((movieImdb, index) => {
               const handleAddMovies = () => {
-                console.log("Search movies", movies);
-                movies.push(movieImdb);
+                addMovies(movieImdb);
               };
 
               return (
