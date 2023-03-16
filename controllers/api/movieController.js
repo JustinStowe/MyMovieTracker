@@ -4,7 +4,7 @@ const dataController = {
   //index
   async index(req, res, next) {
     try {
-      const foundMovies = await Movie.find(req.user._id)
+      const foundMovies = await Movie.find({ userId: req.user._id })
         .populate("comments")
         .exec();
       console.log("all the movies", foundMovies);
@@ -20,7 +20,7 @@ const dataController = {
     try {
       const deleteMovie = await Movie.findByIdAndDelete(id);
       console.log("the deleted movie", deleteMovie);
-      return;
+      return res.json({ message: "movie deleted successfully" });
     } catch (error) {
       res.status(500).json({ error });
     }
@@ -30,7 +30,7 @@ const dataController = {
   async update(req, res, next) {
     const { id } = req.params;
     try {
-      const updatedMovie = await Movie.findByIdAndUpdate(id);
+      const updatedMovie = await Movie.findByIdAndUpdate(id, { ...req.body });
       console.log("The updated Movie", updatedMovie);
       return updatedMovie;
     } catch (error) {
@@ -41,7 +41,10 @@ const dataController = {
   //create
   async create(req, res, next) {
     try {
-      const newMovie = await Movie.create({ ...req.body }, req.user._id);
+      const newMovie = await Movie.create({
+        ...req.body,
+        userId: req.user._id,
+      });
       console.log("the new movie", newMovie);
       return newMovie;
     } catch (error) {
