@@ -1,5 +1,5 @@
 const Movie = require("../../models/Movie");
-
+const User = require("../../models/user");
 const dataController = {
   //index
   async index(req, res, next) {
@@ -46,7 +46,13 @@ const dataController = {
         userId: req.user._id,
       });
       console.log("the new movie", newMovie);
-      return newMovie;
+
+      const user = await User.findById(req.user._id);
+      user.movies.push(newMovie);
+      await user.save();
+
+      console.log("updated user", user);
+      return res.json(newMovie);
     } catch (error) {
       console.log("create movie error", error);
       res.status(500).json({ error });
