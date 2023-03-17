@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 const movieSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  year: { type: Number },
+  Title: { type: String, required: true },
+  Year: { type: Number },
   imdbID: { type: String },
-  type: { type: String },
-  poster: { type: String },
+  Type: { type: String },
+  Poster: { type: String },
   completed: { type: Boolean, default: false },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
 });

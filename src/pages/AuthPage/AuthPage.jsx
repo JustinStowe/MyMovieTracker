@@ -1,12 +1,13 @@
 import { useState } from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import SignUpForm from "../../components/SignUpForm/SignUpForm";
+import styles from "./AuthPage.module.scss";
 
 export default function AuthPage({ setUser }) {
   const [showLogin, setShowLogin] = useState(true);
 
   return (
-    <main className="">
+    <main className={styles.AuthPage}>
       <div>
         <h3 onClick={() => setShowLogin(!showLogin)}>
           {showLogin ? "SIGN UP" : "LOG IN"}
