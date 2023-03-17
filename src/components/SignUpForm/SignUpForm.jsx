@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { signUp } from "../../utilities/user-services";
+import styles from "./SignUpForm.module.scss";
 
 export default class SignUpForm extends Component {
   constructor() {
@@ -8,6 +9,7 @@ export default class SignUpForm extends Component {
       name: "",
       email: "",
       password: "",
+      picture: "",
       confirm: "",
       error: "",
     };
@@ -35,9 +37,13 @@ export default class SignUpForm extends Component {
   render() {
     const disable = this.state.password !== this.state.confirm;
     return (
-      <div>
+      <div className={styles.SignUpForm}>
         <div className="form-container">
-          <form autoComplete="off" onSubmit={this.handleSubmit}>
+          <form
+            className={styles.form}
+            autoComplete="off"
+            onSubmit={this.handleSubmit}
+          >
             <label>Name</label>
             <input
               type="text"
@@ -62,6 +68,7 @@ export default class SignUpForm extends Component {
               onChange={this.handleChange}
               required
             />
+
             <label>Confirm</label>
             <input
               type="password"
@@ -70,7 +77,15 @@ export default class SignUpForm extends Component {
               onChange={this.handleChange}
               required
             />
-            <button type="submit" disabled={disable}>
+            <label>Enter link to your picture</label>
+            <input
+              type="text"
+              name="picture"
+              value={this.state.picture}
+              onChange={this.handleChange}
+              required
+            />
+            <button className={styles.button} type="submit" disabled={disable}>
               SIGN UP
             </button>
           </form>

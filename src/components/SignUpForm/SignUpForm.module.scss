@@ -1,0 +1,23 @@
+.SignUpForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-around;
+}
+
+.SignUpForm .form {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  width: 30rem;
+  height: 32rem;
+  //   row-gap: 10px;
+  background-color: rgb(34, 33, 33);
+  margin: 3vmin 2vmin;
+  border: solid 20px rgb(22, 19, 19);
+}
+
+.SignUpForm .button {
+  margin: 20px;
+  height: 50px;
+}
