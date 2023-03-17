@@ -28,25 +28,20 @@ const dataController = {
   //update
   async update(req, res, next) {
     const { id } = req.params;
-    const { completed } = req.body;
-
     try {
       const user = await User.findById(req.user._id);
       console.log("update movie user", user);
-
-      user.movies = user.movies.map((movie) => {
+      user.movies.map((movie) => {
         if (movie.id === id) {
-          movie.completed = completed;
+          movie = { ...req.body };
         }
         return movie;
       });
-
       user.markModified("movies");
       await user.save();
-
       const updatedMovie = await Movie.findByIdAndUpdate(
         id,
-        { completed },
+        { ...req.body },
         { new: true }
       );
       console.log("The updated Movie", updatedMovie);
@@ -60,7 +55,19 @@ const dataController = {
   },
   //create
   async create(req, res, next) {
+    const { imdbID } = req.body;
     try {
+      //searching for existing movie in database
+      const existingMovie = await Movie.findOne({ imdbID: imdbID });
+      //if it exists, push it into user movie array
+      if (existingMovie) {
+        const user = await User.findById(req.user._id);
+        user.movies.push(existingMovie);
+        await user.save();
+        console.log("user movie collection", user.movies);
+        return res.json(existingMovie);
+      }
+      //if the movie doesn't already exist, create it and push it into user's movie array
       const newMovie = await Movie.create({
         ...req.body,
       });
@@ -70,16 +77,34 @@ const dataController = {
       user.movies.push(newMovie);
       await user.save();
 
-      console.log("updated user", user);
+      console.log("user movie collection", user);
       return res.json(newMovie);
     } catch (error) {
       console.log("create movie error", error);
-
       res.status(500).json({ error });
     }
     next();
   },
   //edit
+  async edit(req, res, next) {
+    const { id } = req.params;
+    try {
+      const user = await User.findById(req.user._id);
+      console.log("user in edit route", user);
+      user.movies.map(async (movie) => {
+        if (movie.id === id) {
+          user.watchedMovies.push(movie);
+          await user.save();
+          console.log("users watched movies", user.watchedMovies);
+        }
+        return movie;
+      });
+    } catch (error) {
+      console.log("edit movie error", error);
+      res.status(500).json({ error });
+    }
+    next();
+  },
   //show
   async show(req, res, next) {
     const { id } = req.params;

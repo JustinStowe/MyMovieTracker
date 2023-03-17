@@ -16,6 +16,8 @@ router.delete("/:id", dataController.destroy, apiController.show);
 router.put("/:id", dataController.update, apiController.show);
 //create
 router.post("/", dataController.create, apiController.show);
+//edit
+router.put("/:id", dataController.edit, apiController.show);
 //show
 router.get("/:id", dataController.show, apiController.show);
 
