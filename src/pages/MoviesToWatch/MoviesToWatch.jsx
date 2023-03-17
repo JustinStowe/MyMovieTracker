@@ -29,6 +29,8 @@ export default function MoviesToWatch({ user, setUser }) {
             return (
               <li>
                 <div className="aDiv" key={movie._id}></div>
+                <h1>{movie.Title}</h1>
+                <img src={movie.Poster} alt={movie.Title} />
                 <Link to="/movie">
                   <button>Movie Details</button>
                 </Link>
