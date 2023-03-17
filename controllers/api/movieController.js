@@ -42,7 +42,6 @@ const dataController = {
     try {
       const newMovie = await Movie.create({
         ...req.body,
-        userId: req.user._id,
       });
       console.log("the new movie", newMovie);
 
