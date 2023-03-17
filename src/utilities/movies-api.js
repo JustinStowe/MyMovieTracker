@@ -18,3 +18,7 @@ export function addMovie(movieData) {
   console.log("Api movieData", movieData);
   return sendRequest(BASE_URL, "POST", movieData);
 }
+
+export function updateMovie(id, movieData) {
+  return sendRequest(`${BASE_URL}/${id}`, "POST", movieData);
+}
