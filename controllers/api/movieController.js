@@ -4,9 +4,8 @@ const dataController = {
   //index
   async index(req, res, next) {
     try {
-      const foundMovies = await Movie.find({ userId: req.user._id })
-        .populate("comments")
-        .exec();
+      const user = await User.findById(req.user._id).populate("movies");
+      const foundMovies = user.movies;
       console.log("all the movies", foundMovies);
       return res.json(foundMovies);
     } catch (error) {
@@ -43,7 +42,6 @@ const dataController = {
     try {
       const newMovie = await Movie.create({
         ...req.body,
-        userId: req.user._id,
       });
       console.log("the new movie", newMovie);
 
