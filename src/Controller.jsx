@@ -58,7 +58,10 @@ function useHook() {
   }
   async function updateMovie(id, movie) {
     try {
+      // console.log("Controller update movie", movie);
       const results = await movieApi.updateMovie(id, movie);
+      console.log("Controller update movie", results);
+      movie.completed = !movie.completed;
       return results;
     } catch (error) {
       console.error(error);

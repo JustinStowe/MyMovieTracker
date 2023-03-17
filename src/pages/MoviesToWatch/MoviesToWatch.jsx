@@ -5,7 +5,8 @@ import Header from "../../components/Header/Header";
 import { Link } from "react-router-dom";
 
 export default function MoviesToWatch({ user, setUser }) {
-  const { getAllMovies, movies, deleteMovie, watchedMovie } = useController();
+  const { getAllMovies, movies, deleteMovie, watchedMovie, updateMovie } =
+    useController();
   console.log(movies);
 
   useEffect(() => {
@@ -35,8 +36,8 @@ export default function MoviesToWatch({ user, setUser }) {
                   <button>Movie Details</button>
                 </Link>
                 <button
-                  onClick={(e) => {
-                    watchedMovie(movie._id, e);
+                  onClick={() => {
+                    updateMovie(movie._id, movie);
                   }}
                 >
                   Watched
