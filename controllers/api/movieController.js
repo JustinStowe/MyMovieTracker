@@ -55,6 +55,7 @@ const dataController = {
       return res.json(newMovie);
     } catch (error) {
       console.log("create movie error", error);
+
       res.status(500).json({ error });
     }
     next();

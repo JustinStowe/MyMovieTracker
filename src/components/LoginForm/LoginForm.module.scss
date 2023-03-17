@@ -1,0 +1,23 @@
+.LoginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-around;
+}
+
+.LoginForm .form {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  width: 30rem;
+  height: 15rem;
+  //   row-gap: 10px;
+  background-color: rgb(34, 33, 33);
+  margin: 3vmin 2vmin;
+  border: solid 20px rgb(22, 19, 19);
+}
+
+.LoginForm .button {
+  margin: 20px;
+  height: 50px;
+}
