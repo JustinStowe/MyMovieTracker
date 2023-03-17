@@ -45,7 +45,7 @@ export default function Search({ user, setUser }) {
           <Aside user={user} setUser={setUser} />
         </aside>
         <div className={styles.div2}>
-          <h1>Enter Movie to look for</h1>
+          <h1>Search for Movies</h1>
           <input
             style={{
               width: 300,
