@@ -28,11 +28,32 @@ const dataController = {
   //update
   async update(req, res, next) {
     const { id } = req.params;
+    const { completed } = req.body;
+
     try {
-      const updatedMovie = await Movie.findByIdAndUpdate(id, { ...req.body });
+      const user = await User.findById(req.user._id);
+      console.log("update movie user", user);
+
+      user.movies = user.movies.map((movie) => {
+        if (movie.id === id) {
+          movie.completed = completed;
+        }
+        return movie;
+      });
+
+      user.markModified("movies");
+      await user.save();
+
+      const updatedMovie = await Movie.findByIdAndUpdate(
+        id,
+        { completed },
+        { new: true }
+      );
       console.log("The updated Movie", updatedMovie);
-      return updatedMovie;
+
+      return res.json(updatedMovie);
     } catch (error) {
+      console.log("update movie error", error);
       res.status(500).json({ error });
     }
     next();
