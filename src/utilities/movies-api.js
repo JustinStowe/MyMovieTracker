@@ -18,3 +18,9 @@ export function addMovie(movieData) {
   console.log("Api movieData", movieData);
   return sendRequest(BASE_URL, "POST", movieData);
 }
+
+export function watchedMovie(id, movieData) {
+  movieData.completed = true;
+  console.log(movieData);
+  return sendRequest(`${BASE_URL}/${id}`, "POST", movieData);
+}
