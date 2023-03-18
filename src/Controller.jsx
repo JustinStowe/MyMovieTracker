@@ -57,12 +57,23 @@ function useHook() {
     }
   }
 
-  async function updateMovie(id, movie) {
+  // async function updateMovie(id, movie) {
+  //   try {
+  //     // console.log("Controller update movie", movie);
+  //     const results = await movieApi.updateMovie(id, movie);
+  //     console.log("Controller update movie", results);
+  //     movie.completed = !movie.completed;
+  //     return results;
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
+
+  async function updateUser(id, movie) {
     try {
       // console.log("Controller update movie", movie);
-      const results = await movieApi.updateMovie(id, movie);
+      const results = await movieApi.updateUser(id, movie);
       console.log("Controller update movie", results);
-      movie.completed = !movie.completed;
       return results;
     } catch (error) {
       console.error(error);
@@ -87,7 +98,8 @@ function useHook() {
     getSingleMovie,
     deleteMovie,
     watchedMovie,
-    updateMovie,
+    // updateMovie,
     addMovies,
+    updateUser,
   };
 }
