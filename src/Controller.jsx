@@ -18,6 +18,7 @@ export const useController = () => {
 
 function useHook() {
   const [movies, setMovies] = useState([]);
+  const [userMovies, setUserMovies] = useState([]);
   console.log("Control movies", movies);
 
   async function watchedMovie(id, e) {
@@ -34,7 +35,7 @@ function useHook() {
   async function getAllMovies() {
     try {
       const results = await movieApi.getAll();
-      setMovies(results);
+      setUserMovies(results);
     } catch (error) {
       console.error(error);
     }
@@ -94,6 +95,7 @@ function useHook() {
   }
   return {
     movies,
+    userMovies,
     getAllMovies,
     getSingleMovie,
     deleteMovie,
