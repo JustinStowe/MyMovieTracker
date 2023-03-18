@@ -11,7 +11,7 @@ export function getById(id) {
 }
 
 export function deleteById(id) {
-  return sendRequest(`${BASE_URL}/${id}`);
+  return sendRequest(`${BASE_URL}/${id}`, "DELETE");
 }
 
 export function addMovie(movieData) {
@@ -19,9 +19,11 @@ export function addMovie(movieData) {
   return sendRequest(BASE_URL, "POST", movieData);
 }
 
-export function updateMovie(id, movieData) {
+export function watchedMovie(movieData) {
+  return sendRequest(`${BASE_URL}/watchedmovies`, "POST", movieData);
+}
 
-  // movieData.completed = true;
-  console.log("Updated mvie api", movieData);
-  return sendRequest(`${BASE_URL}/${id}`, "PUT", movieData);
+export function updateMovie(id, movieData) {
+  console.log(movieData);
+  return sendRequest(`${BASE_URL}/${id}`, "POST", movieData);
 }
