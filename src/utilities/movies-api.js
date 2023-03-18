@@ -19,11 +19,8 @@ export function addMovie(movieData) {
   return sendRequest(BASE_URL, "POST", movieData);
 }
 
-export function watchedMovie(movieData) {
-  return sendRequest(`${BASE_URL}/watchedmovies`, "POST", movieData);
-}
-
-export function updateMovie(id, movieData) {
-  console.log(movieData);
-  return sendRequest(`${BASE_URL}/${id}`, "POST", movieData);
+export function updateUser(id, userMovieData) {
+  // movieData.completed = true;
+  console.log("Updated movie api", userMovieData);
+  return sendRequest(`BASE_URL/${id}`, "PUT", userMovieData);
 }
