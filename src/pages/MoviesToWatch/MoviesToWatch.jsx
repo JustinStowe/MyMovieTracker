@@ -5,8 +5,14 @@ import Header from "../../components/Header/Header";
 import { Link } from "react-router-dom";
 
 export default function MoviesToWatch({ user, setUser }) {
-  const { getAllMovies, movies, deleteMovie, watchedMovie, updateUser } =
-    useController();
+  const {
+    getAllMovies,
+    movies,
+    deleteMovie,
+    watchedMovie,
+    updateUser,
+    userMovies,
+  } = useController();
   // console.log(movies);
   console.log("user movies", user.movies);
 
@@ -25,7 +31,7 @@ export default function MoviesToWatch({ user, setUser }) {
         <Header text={text} />
       </div>
       <ul className="">
-        {user.movies.map((movie) => {
+        {userMovies.map((movie) => {
           console.log("Movie object", movie);
           return (
             <li>
