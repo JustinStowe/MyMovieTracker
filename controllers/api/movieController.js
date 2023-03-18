@@ -17,9 +17,23 @@ const dataController = {
   async destroy(req, res, next) {
     const { id } = req.params;
     try {
-      const deleteMovie = await Movie.findByIdAndDelete(id);
-      console.log("the deleted movie", deleteMovie);
-      return res.json({ message: "movie deleted successfully" });
+      const user = await user.findById(req.user._id);
+      console.log("user in delete route", user);
+      const targetMovie = user.movies.findIndex(
+        (movie) => movie.toString() === id
+      );
+      if (targetMovie !== -1) {
+        user.movies.splice(targetMovie, 1);
+        await user.save();
+      }
+      const targetWatchedMovie = user.watchedMovies.findIndex(
+        (movie) => movie.toString() === id
+      );
+
+      if (targetWatchedMovie !== -1) {
+        user.watchedMovies.splice(targetWatchedMovie, 1);
+        await user.save();
+      }
     } catch (error) {
       res.status(500).json({ error });
     }
