@@ -23,28 +23,26 @@ export default function MoviesToWatch({ user, setUser }) {
         <Header text={text} />
       </div>
       <ul className="">
-        {movies
-          .filter((i) => i.completed)
-          .map((movie) => {
-            return (
-              <li>
-                <div className="aDiv" key={movie._id}></div>
-                <h1>{movie.Title}</h1>
-                <img src={movie.Poster} alt={movie.Title} />
-                <Link to="/movie">
-                  <button>Movie Details</button>
-                </Link>
-                <button
-                  className="deleteButton"
-                  onClick={() => {
-                    deleteMovie(movie._id);
-                  }}
-                >
-                  Delete
-                </button>
-              </li>
-            );
-          })}
+        {movies.map((movie) => {
+          return (
+            <li>
+              <div className="aDiv" key={movie._id}></div>
+              <h1>{movie.Title}</h1>
+              <img src={movie.Poster} alt={movie.Title} />
+              <Link to="/movie">
+                <button>Movie Details</button>
+              </Link>
+              <button
+                className="deleteButton"
+                onClick={() => {
+                  deleteMovie(movie._id);
+                }}
+              >
+                Delete
+              </button>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

@@ -19,9 +19,8 @@ export function addMovie(movieData) {
   return sendRequest(BASE_URL, "POST", movieData);
 }
 
-export function updateMovie(id, movieData) {
-
+export function updateUser(id, userMovieData) {
   // movieData.completed = true;
-  console.log("Updated mvie api", movieData);
-  return sendRequest(`${BASE_URL}/${id}`, "PUT", movieData);
+  console.log("Updated mvie api", userMovieData);
+  return sendRequest(`/api/user/${id}`, "PUT", userMovieData);
 }
