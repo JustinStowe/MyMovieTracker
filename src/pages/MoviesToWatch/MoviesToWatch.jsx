@@ -8,6 +8,7 @@ export default function MoviesToWatch({ user, setUser }) {
   const { getAllMovies, movies, deleteMovie, watchedMovie, updateUser } =
     useController();
   console.log(movies);
+  console.log("user movies", user.movies);
 
   useEffect(() => {
     if (movies.length < 1) {
