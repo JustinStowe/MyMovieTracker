@@ -63,9 +63,9 @@ const dataController = {
       if (existingMovie) {
         const user = await User.findById(req.user._id).populate("movies");
 
-        // const userHasMovie = await User.find({
-        //   imdbID: { $exists: true, $eq: imdbID },
-        // });
+        const userHasMovie = await User.find({
+          imdbID: { $exists: true, $eq: imdbID },
+        });
 
         if (userHasMovie) {
           alert("You already have this movie in your list");
