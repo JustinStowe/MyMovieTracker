@@ -60,10 +60,15 @@ const dataController = {
       //if it exists, push it into user movie array
       if (existingMovie) {
         const user = await User.findById(req.user._id);
-        user.movies.push(existingMovie);
-        await user.save();
-        console.log("user movie collection", user.movies);
-        return res.json(existingMovie);
+        const userHasMovie = await user.movies.findOne({ imdbID: imdbID });
+        if (userHasMovie) {
+          alert("You already have this movie in your list");
+        } else {
+          user.movies.push(existingMovie);
+          await user.save();
+          console.log("user movie collection", user.movies);
+          return res.json(existingMovie);
+        }
       }
       //if the movie doesn't already exist, create it and push it into user's movie array
       const newMovie = await Movie.create({
