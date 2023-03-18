@@ -1,9 +1,8 @@
-# MERN STACK STARTER KIT
+# My Movie Tracker
 
-Andrew here
-darya here
-justin here
+## Project Description
 
+This app allows you to search for any movie and add it to a list of movies you would like to watch. Once you have watched it, you are able to then add it to your watched movies list. You are also able to make comments for any other user to see on each movie to let them know your thoughts on the movie.
 
 ## WireFrame
 

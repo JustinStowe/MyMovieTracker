@@ -60,7 +60,9 @@ const dataController = {
       //if it exists, push it into user movie array
       if (existingMovie) {
         const user = await User.findById(req.user._id);
-        const userHasMovie = await user.movies.findOne({ imdbID: imdbID });
+        const userHasMovie = await user.movies
+          .findOne({ imdbID: imdbID })
+          .populate();
         if (userHasMovie) {
           alert("You already have this movie in your list");
         } else {
