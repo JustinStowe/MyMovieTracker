@@ -9,10 +9,9 @@ export default function UserLogOut({ user, setUser }) {
   }
 
   return (
-    <div className={styles.LogOut}>
-      <p>LogOut</p>
+    <div>
       <div>{user.name}</div>
-      <div className="">{user.email}</div>
+      <div className={styles.LogOut}>{user.email}</div>
       <button className="btn-sm" onClick={handleLogOut}>
         LOG OUT
       </button>
