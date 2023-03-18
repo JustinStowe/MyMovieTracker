@@ -13,6 +13,18 @@ const dataController = {
     }
     next();
   },
+  //watched index
+  async watchedIndex(req, res, next) {
+    try {
+      const user = await User.findById(req.user._id).populate("watchedMovies");
+      const foundWatchedMovies = user.watchedMovies;
+      console.log("all watched movies", foundWatchedMovies);
+      return res.json(foundWatchedMovies);
+    } catch (error) {
+      console.log("watched movies index error", error);
+      res.status(500).json({ error });
+    }
+  },
   //destroy
   async destroy(req, res, next) {
     const { id } = req.params;
