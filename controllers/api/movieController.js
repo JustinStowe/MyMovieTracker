@@ -109,24 +109,29 @@ const dataController = {
   //edit
   async edit(req, res, next) {
     const { id } = req.params;
+
     try {
       const user = await User.findById(req.user._id);
       console.log("user in edit route", user);
-      user.movies.map(async (movie) => {
+
+      for (let i = 0; i < user.movies.length; i++) {
+        const movie = user.movies[i];
+
         if (movie.id === id) {
           user.watchedMovies.push(movie);
           await user.save();
           console.log("users watched movies", user.watchedMovies);
         }
-        const watchedMovies = user.watchedMovies;
-        return watchedMovies;
-      });
+      }
+
+      const watchedMovies = user.watchedMovies;
+      return res.json({ watchedMovies, user });
     } catch (error) {
       console.log("edit movie error", error);
       res.status(500).json({ error });
     }
-    next();
   },
+
   //show
   async show(req, res, next) {
     const { id } = req.params;
