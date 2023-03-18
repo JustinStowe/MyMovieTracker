@@ -19,6 +19,7 @@ export const useController = () => {
 function useHook() {
   const [movies, setMovies] = useState([]);
   const [userMovies, setUserMovies] = useState([]);
+  const [userWatchedMovies, setUserWatchedMovies] = useState([]);
   console.log("Control movies", movies);
 
   async function watchedMovie(id, e) {
@@ -40,7 +41,14 @@ function useHook() {
       console.error(error);
     }
   }
-
+  // async function getAllWatchedMovies() {
+  //   try {
+  //     const results = await movieApi.getAllWatched();
+  //     setUserWatchedMovies(results);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
   async function getSingleMovie(id) {
     try {
       const results = await movieApi.getById(id);
@@ -70,10 +78,10 @@ function useHook() {
   //   }
   // }
 
-  async function updateUser(id, movie) {
+  async function updateUser(id, movieid) {
     try {
       // console.log("Controller update movie", movie);
-      const results = await movieApi.updateUser(id, movie);
+      const results = await movieApi.updateUser(id, movieid);
       console.log("Controller update movie", results);
       return results;
     } catch (error) {
@@ -96,6 +104,7 @@ function useHook() {
   return {
     movies,
     userMovies,
+    userWatchedMovies,
     getAllMovies,
     getSingleMovie,
     deleteMovie,
@@ -103,5 +112,6 @@ function useHook() {
     // updateMovie,
     addMovies,
     updateUser,
+    //getAllWatchedMovies,
   };
 }
