@@ -29,7 +29,7 @@ const dataController = {
   async update(req, res, next) {
     const { id } = req.params;
     try {
-      const user = await user.findById(req.user._id);
+      const user = await User.findById(req.user._id);
       console.log("user in update route", user);
       const targetMovie = user.movies.findIndex(
         (movie) => movie.toString() === id
