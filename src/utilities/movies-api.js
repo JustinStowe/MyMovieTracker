@@ -20,6 +20,7 @@ export function addMovie(movieData) {
 }
 
 export function updateMovie(id, movieData) {
+
   // movieData.completed = true;
   console.log("Updated mvie api", movieData);
   return sendRequest(`${BASE_URL}/${id}`, "PUT", movieData);
