@@ -17,8 +17,20 @@ const dataController = {
   async destroy(req, res, next) {
     const { id } = req.params;
     try {
+      const deleteMovie = await Movie.findByIdAndDelete(id);
+      console.log("the deleted movie", deleteMovie);
+      return res.json({ message: "movie deleted successfully" });
+    } catch (error) {
+      res.status(500).json({ error });
+    }
+    next();
+  },
+  //update
+  async update(req, res, next) {
+    const { id } = req.params;
+    try {
       const user = await user.findById(req.user._id);
-      console.log("user in delete route", user);
+      console.log("user in update route", user);
       const targetMovie = user.movies.findIndex(
         (movie) => movie.toString() === id
       );
@@ -35,34 +47,6 @@ const dataController = {
         await user.save();
       }
     } catch (error) {
-      res.status(500).json({ error });
-    }
-    next();
-  },
-  //update
-  async update(req, res, next) {
-    const { id } = req.params;
-    try {
-      const user = await User.findById(req.user._id);
-      console.log("update movie user", user);
-      user.movies.map((movie) => {
-        if (movie.id === id) {
-          movie = { ...req.body };
-        }
-        return movie;
-      });
-      user.markModified("movies");
-      await user.save();
-      const updatedMovie = await Movie.findByIdAndUpdate(
-        id,
-        { ...req.body },
-        { new: true }
-      );
-      console.log("The updated Movie", updatedMovie);
-
-      return res.json(updatedMovie);
-    } catch (error) {
-      console.log("update movie error", error);
       res.status(500).json({ error });
     }
     next();
