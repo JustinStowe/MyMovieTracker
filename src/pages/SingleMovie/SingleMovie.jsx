@@ -15,17 +15,18 @@ export function SingleMovie({ user, setUser }) {
       getSingleMovie(movies._id);
     }
   }, []);
+  console.log("here", movies);
   return (
     <div>
       <Header text={text} />
       <div className="text">
-        <h3>Title:</h3> <h3 className="answertext">{movies.Title}</h3>
+        <h3>Title:</h3> <h3 className="answertext">{movies[0].Title}</h3>
       </div>
       <div className="text">
-        <h3>Year:</h3> <h3 className="answertext">{movies.Year}</h3>
+        <h3>Year:</h3> <h3 className="answertext">{movies[0].Year}</h3>
       </div>
       <div className="text">
-        <img src={movies.Poster} alt={movies.Title} />
+        <img src={movies[0].Poster} alt={movies[0].Title} />
         {/* <h3>Ganre:</h3> <h3 className="answertext">{movie.Ganre}</h3> */}
       </div>
       <button
