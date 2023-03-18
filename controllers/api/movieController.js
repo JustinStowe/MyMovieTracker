@@ -56,13 +56,17 @@ const dataController = {
     const { imdbID } = req.body;
     try {
       //searching for existing movie in database
-      const existingMovie = await Movie.findOne({ imdbID: imdbID });
+      const existingMovie = await Movie.find({
+        imdbID: { $exists: true, $eq: imdbID },
+      });
       //if it exists, push it into user movie array
       if (existingMovie) {
-        const user = await User.findById(req.user._id);
-        const userHasMovie = await user.movies
-          .findOne({ imdbID: imdbID })
-          .populate();
+        const user = await User.findById(req.user._id).populate("movies");
+
+        // const userHasMovie = await User.find({
+        //   imdbID: { $exists: true, $eq: imdbID },
+        // });
+
         if (userHasMovie) {
           alert("You already have this movie in your list");
         } else {
@@ -78,7 +82,7 @@ const dataController = {
       });
       console.log("the new movie", newMovie);
 
-      const user = await User.findById(req.user._id);
+      const user = await User.findById(req.user._id).populate("movies");
       user.movies.push(newMovie);
       await user.save();
 

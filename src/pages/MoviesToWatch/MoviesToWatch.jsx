@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 export default function MoviesToWatch({ user, setUser }) {
   const { getAllMovies, movies, deleteMovie, watchedMovie, updateUser } =
     useController();
-  console.log(movies);
+  // console.log(movies);
+  console.log("user movies", user.movies);
 
   useEffect(() => {
     if (movies.length < 1) {
@@ -25,6 +26,7 @@ export default function MoviesToWatch({ user, setUser }) {
       </div>
       <ul className="">
         {user.movies.map((movie) => {
+          console.log("Movie object", movie);
           return (
             <li>
               <div className="aDiv" key={movie._id}></div>
