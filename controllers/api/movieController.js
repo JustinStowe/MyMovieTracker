@@ -106,7 +106,8 @@ const dataController = {
           await user.save();
           console.log("users watched movies", user.watchedMovies);
         }
-        return movie;
+        const watchedMovies = user.watchedMovies;
+        return watchedMovies;
       });
     } catch (error) {
       console.log("edit movie error", error);
