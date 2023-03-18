@@ -29,26 +29,24 @@ const dataController = {
   async update(req, res, next) {
     const { id } = req.params;
     try {
-      const user = await User.findById(req.user._id);
-      console.log("update movie user", user);
-      user.movies.map((movie) => {
-        if (movie.id === id) {
-          movie = { ...req.body };
-        }
-        return movie;
-      });
-      user.markModified("movies");
-      await user.save();
-      const updatedMovie = await Movie.findByIdAndUpdate(
-        id,
-        { ...req.body },
-        { new: true }
+      const user = await user.findById(req.user._id);
+      console.log("user in update route", user);
+      const targetMovie = user.movies.findIndex(
+        (movie) => movie.toString() === id
       );
-      console.log("The updated Movie", updatedMovie);
+      if (targetMovie !== -1) {
+        user.movies.splice(targetMovie, 1);
+        await user.save();
+      }
+      const targetWatchedMovie = user.watchedMovies.findIndex(
+        (movie) => movie.toString() === id
+      );
 
-      return res.json(updatedMovie);
+      if (targetWatchedMovie !== -1) {
+        user.watchedMovies.splice(targetWatchedMovie, 1);
+        await user.save();
+      }
     } catch (error) {
-      console.log("update movie error", error);
       res.status(500).json({ error });
     }
     next();
