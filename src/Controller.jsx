@@ -56,6 +56,7 @@ function useHook() {
       console.error(error);
     }
   }
+
   async function updateMovie(id, movie) {
     try {
       // console.log("Controller update movie", movie);
