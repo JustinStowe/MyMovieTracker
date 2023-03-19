@@ -96,9 +96,7 @@ const dataController = {
         });
 
         if (userHasMovie) {
-          return res.json({
-            message: "You already have this movie in your list",
-          });
+          console.log("you already have this movie in your list");
         } else {
           user.movies.push(existingMovie);
           await user.save();
