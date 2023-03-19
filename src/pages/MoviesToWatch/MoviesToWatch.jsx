@@ -50,6 +50,7 @@ export default function MoviesToWatch({ user, setUser }) {
                   <button
                     onClick={() => {
                       updateUser(movie._id);
+                      getAllMovies();
                       // updateMovie(movie._id, movie);
                     }}
                   >
@@ -59,6 +60,7 @@ export default function MoviesToWatch({ user, setUser }) {
                     className="deleteButton"
                     onClick={() => {
                       deleteMovie(movie._id);
+                      getAllMovies();
                     }}
                   >
                     Delete

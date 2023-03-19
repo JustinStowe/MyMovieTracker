@@ -48,6 +48,7 @@ export default function WatchedMovies({ user, setUser }) {
                   className="deleteButton"
                   onClick={() => {
                     deleteMovie(movie._id);
+                    getAllWatchedMovies();
                   }}
                 >
                   Delete
