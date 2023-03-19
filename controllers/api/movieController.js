@@ -131,7 +131,8 @@ const dataController = {
       if (!watchedMovie) {
         return res.status(404).json({ message: "Movie not found" });
       }
-
+      const index = user.movies.indexOf(watchedMovie);
+      user.movies.splice(index, 1);
       user.watchedMovies.push(watchedMovie);
       await user.save();
       console.log("users watched movies", user.watchedMovies);
@@ -143,6 +144,7 @@ const dataController = {
       console.log("edit movie error", error);
       res.status(500).json({ error });
     }
+    next();
   },
 
   //show
