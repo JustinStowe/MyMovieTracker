@@ -39,35 +39,39 @@ const dataController = {
   //update
   async update(req, res, next) {
     const { id } = req.params;
-    const updates = { ...req.body };
 
     try {
       const user = await User.findById(req.user._id).populate("movies");
 
       // Find the target movie in the user's movies array
-      const targetMovie = user.movies.find((movie) => movie._id.equals(id));
+      const targetMovieIndex = user.movies.findIndex((movie) =>
+        movie._id.equals(id)
+      );
 
-      if (targetMovie) {
-        // If the movie is found, update its data and save the user
-        Object.assign(targetMovie, updates);
+      if (targetMovieIndex !== -1) {
+        // If the movie is found in the user's movies array, remove it and save the user
+        user.movies = user.movies.filter((movie) => !movie._id.equals(id));
         await user.save();
       } else {
         // If the movie is not found in the user's movies array, check the watchedMovies array
-        const targetWatchedMovie = user.watchedMovies.find((movie) =>
+        const targetWatchedMovieIndex = user.watchedMovies.findIndex((movie) =>
           movie._id.equals(id)
         );
 
-        if (targetWatchedMovie) {
-          // If the movie is found in the user's watchedMovies array, update its data and save the user
-          Object.assign(targetWatchedMovie, updates);
+        if (targetWatchedMovieIndex !== -1) {
+          // If the movie is found in the user's watchedMovies array, remove it and save the user
+          user.watchedMovies = user.watchedMovies.filter(
+            (movie) => !movie._id.equals(id)
+          );
           await user.save();
         } else {
           // If the movie is not found in either array, return a 404 error
           res.status(404).json({ error: "Movie not found" });
+          return;
         }
       }
 
-      return res.json({ message: "Movie updated successfully" });
+      res.json({ message: "Movie updated successfully" });
     } catch (error) {
       res.status(500).json({ error });
     }
