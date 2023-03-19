@@ -6,12 +6,16 @@ export function getAll() {
   return sendRequest(BASE_URL);
 }
 
+export function getAllWatched() {
+  return sendRequest(`${BASE_URL}/watched`);
+}
+
 export function getById(id) {
   return sendRequest(`${BASE_URL}/${id}`);
 }
 
 export function deleteById(id) {
-  return sendRequest(`${BASE_URL}/${id}`);
+  return sendRequest(`${BASE_URL}/${id}`, "DELETE");
 }
 
 export function addMovie(movieData) {

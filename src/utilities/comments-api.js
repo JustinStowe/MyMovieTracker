@@ -3,7 +3,7 @@ import sendRequest from "./send-request.js";
 const BASE_URL = `api/movie/${imdbID}`;
 
 export function deleteCommentById(imdbID) {
-  return sendRequest(`${BASE_URL}`);
+  return sendRequest(`${BASE_URL}`, "DELETE");
 }
 
 export function addComment(comment) {
