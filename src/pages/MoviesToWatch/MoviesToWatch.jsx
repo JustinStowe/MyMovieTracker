@@ -17,7 +17,7 @@ export default function MoviesToWatch({ user, setUser }) {
   console.log("user movies", user.movies);
 
   useEffect(() => {
-    if (movies.length < 1) {
+    if (userMovies.length < 1) {
       getAllMovies();
     }
   }, []);

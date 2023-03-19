@@ -6,6 +6,7 @@ const dataController = {
     try {
       const user = await User.findById(req.user._id).populate("movies");
       const foundMovies = user.movies;
+      console.log(foundMovies);
       return res.json(foundMovies);
     } catch (error) {
       res.status(500).json({ error });
@@ -96,9 +97,7 @@ const dataController = {
         });
 
         if (userHasMovie) {
-          return res.json({
-            message: "You already have this movie in your list",
-          });
+          console.log("You already have this movie in your list");
         } else {
           user.movies.push(existingMovie);
           await user.save();
