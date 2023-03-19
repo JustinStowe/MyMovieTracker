@@ -6,8 +6,14 @@ import Aside from "../../components/Aside/Aside";
 import styles from "./SingleMovie.module.scss";
 
 export function SingleMovie({ user, setUser }) {
-  const { movies, deleteMovie, getSingleMovie, userMovies, getAllMovies } =
-    useController();
+  const {
+    movies,
+    deleteMovie,
+    getSingleMovie,
+    userMovies,
+    getAllMovies,
+    userWatchedMovies,
+  } = useController();
   console.log("usermovies in dsingle", userMovies);
   const { id } = useParams();
   console.log(id);
@@ -27,8 +33,13 @@ export function SingleMovie({ user, setUser }) {
   const movieFunction = () => {
     const indexOfMovie = userMovies.findIndex((i) => i._id === id);
     const movieByIndex = userMovies[indexOfMovie];
-    return movieByIndex;
+    const indexOfMovieWatched = userWatchedMovies.findIndex(
+      (i) => i._id === id
+    );
+    const movieByIndexWatched = userWatchedMovies[indexOfMovieWatched];
+    return movieByIndex || movieByIndexWatched;
   };
+
   const movie = movieFunction();
   console.log("WTF", movie);
   return (
