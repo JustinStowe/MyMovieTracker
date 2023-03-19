@@ -41,7 +41,10 @@ const dataController = {
     const { id } = req.params;
 
     try {
-      const user = await User.findById(req.user._id).populate("movies");
+      const user = await User.findById(req.user._id).populate(
+        "movies",
+        "watchedMovies"
+      );
 
       // Find the target movie in the user's movies array
       const targetMovieIndex = user.movies.findIndex((movie) =>
