@@ -43,7 +43,7 @@ export default function MoviesToWatch({ user, setUser }) {
               </Link>
               <button
                 onClick={() => {
-                  updateUser(user._id, movie.id);
+                  updateUser(movie._id);
                   // updateMovie(movie._id, movie);
                 }}
               >
