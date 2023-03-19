@@ -64,7 +64,9 @@ export default function Search({ user, setUser }) {
                 <div className={styles.div3} key={index}>
                   <h1>{movieImdb.Title}</h1>
                   <img src={movieImdb.Poster} alt={movieImdb.Title} />
-                  <button onClick={handleAddMovies}>Add to my movies</button>
+                  <button className={styles.button} onClick={handleAddMovies}>
+                    Add to my movies
+                  </button>
                 </div>
               );
             })}
