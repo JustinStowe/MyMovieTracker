@@ -41,14 +41,14 @@ function useHook() {
       console.error(error);
     }
   }
-  // async function getAllWatchedMovies() {
-  //   try {
-  //     const results = await movieApi.getAllWatched();
-  //     setUserWatchedMovies(results);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
+  async function getAllWatchedMovies() {
+    try {
+      const results = await movieApi.getAllWatched();
+      setUserWatchedMovies(results);
+    } catch (error) {
+      console.error(error);
+    }
+  }
   async function getSingleMovie(id) {
     try {
       const results = await movieApi.getById(id);
@@ -112,6 +112,6 @@ function useHook() {
     // updateMovie,
     addMovies,
     updateUser,
-    //getAllWatchedMovies,
+    getAllWatchedMovies,
   };
 }

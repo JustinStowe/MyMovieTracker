@@ -5,13 +5,19 @@ import Header from "../../components/Header/Header";
 import { Link } from "react-router-dom";
 
 export default function MoviesToWatch({ user, setUser }) {
-  const { getAllMovies, movies, deleteMovie, userWatchedMovies, updateUser } =
-    useController();
+  const {
+    getAllMovies,
+    movies,
+    deleteMovie,
+    userWatchedMovies,
+    updateUser,
+    getAllWatchedMovies,
+  } = useController();
   console.log("Watched Movies", movies);
 
   useEffect(() => {
     if (movies.length < 1) {
-      updateUser();
+      getAllWatchedMovies();
     }
   }, []);
   const [text, setText] = useState("");

@@ -127,7 +127,7 @@ const dataController = {
       }
 
       const watchedMovies = user.watchedMovies;
-      return res.json({ watchedMovies, user });
+      return res.json(watchedMovies);
     } catch (error) {
       console.log("edit movie error", error);
       res.status(500).json({ error });
