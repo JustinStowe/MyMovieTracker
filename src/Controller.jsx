@@ -41,14 +41,14 @@ function useHook() {
       console.error(error);
     }
   }
-  // async function getAllWatchedMovies() {
-  //   try {
-  //     const results = await movieApi.getAllWatched();
-  //     setUserWatchedMovies(results);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
+  async function getAllWatchedMovies() {
+    try {
+      const results = await movieApi.getAllWatched();
+      setUserWatchedMovies(results);
+    } catch (error) {
+      console.error(error);
+    }
+  }
   async function getSingleMovie(id) {
     try {
       const results = await movieApi.getById(id);
@@ -88,19 +88,29 @@ function useHook() {
       console.error(error);
     }
   }
+  // async function deleteMovie(id) {
+  //   try {
+  //     await movieApi.deleteById(id);
+  //     const indexToRemove = movies.findIndex((movie) => movie._id === id);
+  //     if (indexToRemove !== null && indexToRemove !== undefined) {
+  //       const moviesCopy = [...movies];
+  //       moviesCopy.splice(indexToRemove, 1);
+  //       setMovies([...moviesCopy]);
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
   async function deleteMovie(id) {
     try {
-      await movieApi.deleteById(id);
-      const indexToRemove = movies.findIndex((movie) => movie._id === id);
-      if (indexToRemove !== null && indexToRemove !== undefined) {
-        const moviesCopy = [...movies];
-        moviesCopy.splice(indexToRemove, 1);
-        setMovies([...moviesCopy]);
-      }
+      const results = await movieApi.deleteById(id);
+      console.log("Controller update movie", results);
+      return results;
     } catch (error) {
       console.error(error);
     }
   }
+
   return {
     movies,
     userMovies,
@@ -112,6 +122,6 @@ function useHook() {
     // updateMovie,
     addMovies,
     updateUser,
-    //getAllWatchedMovies,
+    getAllWatchedMovies,
   };
 }
