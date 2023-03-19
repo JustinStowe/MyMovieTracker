@@ -6,7 +6,6 @@ const dataController = {
     try {
       const user = await User.findById(req.user._id).populate("movies");
       const foundMovies = user.movies;
-      console.log("all the movies", foundMovies);
       return res.json(foundMovies);
     } catch (error) {
       res.status(500).json({ error });
@@ -18,7 +17,6 @@ const dataController = {
     try {
       const user = await User.findById(req.user._id).populate("watchedMovies");
       const foundWatchedMovies = user.watchedMovies;
-      console.log("all watched movies", foundWatchedMovies);
       return res.json(foundWatchedMovies);
     } catch (error) {
       console.log("watched movies index error", error);
@@ -33,6 +31,7 @@ const dataController = {
       console.log("the deleted movie", deleteMovie);
       return res.json({ message: "movie deleted successfully" });
     } catch (error) {
+      console.log("Error in destroy route", error);
       res.status(500).json({ error });
     }
     next();
@@ -40,27 +39,39 @@ const dataController = {
   //update
   async update(req, res, next) {
     const { id } = req.params;
-    try {
-      const user = await User.findById(req.user._id);
-      console.log("user in update route", user);
-      const targetMovie = user.movies.findIndex(
-        (movie) => movie.toString() === id
-      );
-      if (targetMovie !== -1) {
-        user.movies.splice(targetMovie, 1);
-        await user.save();
-      }
-      const targetWatchedMovie = user.watchedMovies.findIndex(
-        (movie) => movie.toString() === id
-      );
+    const updates = { ...req.body };
 
-      if (targetWatchedMovie !== -1) {
-        user.watchedMovies.splice(targetWatchedMovie, 1);
+    try {
+      const user = await User.findById(req.user._id).populate("movies");
+
+      // Find the target movie in the user's movies array
+      const targetMovie = user.movies.find((movie) => movie._id.equals(id));
+
+      if (targetMovie) {
+        // If the movie is found, update its data and save the user
+        Object.assign(targetMovie, updates);
         await user.save();
+      } else {
+        // If the movie is not found in the user's movies array, check the watchedMovies array
+        const targetWatchedMovie = user.watchedMovies.find((movie) =>
+          movie._id.equals(id)
+        );
+
+        if (targetWatchedMovie) {
+          // If the movie is found in the user's watchedMovies array, update its data and save the user
+          Object.assign(targetWatchedMovie, updates);
+          await user.save();
+        } else {
+          // If the movie is not found in either array, return a 404 error
+          res.status(404).json({ error: "Movie not found" });
+        }
       }
+
+      return res.json({ message: "Movie updated successfully" });
     } catch (error) {
       res.status(500).json({ error });
     }
+
     next();
   },
   //create
@@ -81,7 +92,9 @@ const dataController = {
         });
 
         if (userHasMovie) {
-          console.log("You already have this movie in your list");
+          return res.json({
+            message: "You already have this movie in your list",
+          });
         } else {
           user.movies.push(existingMovie);
           await user.save();
@@ -93,13 +106,10 @@ const dataController = {
       const newMovie = await Movie.create({
         ...req.body,
       });
-      console.log("the new movie", newMovie);
 
       const user = await User.findById(req.user._id).populate("movies");
       user.movies.push(newMovie);
       await user.save();
-
-      console.log("user movie collection", user);
       return res.json(newMovie);
     } catch (error) {
       console.log("create movie error", error);
@@ -110,24 +120,22 @@ const dataController = {
   //edit
   async edit(req, res, next) {
     const { id } = req.params;
-    console.log("Req params", req.params);
 
     try {
-      const user = await User.findById(req.user._id);
-      console.log("user in edit route", user);
+      const user = await User.findById(req.user._id).populate("movies");
 
-      for (let i = 0; i < user.movies.length; i++) {
-        const movie = user.movies[i];
+      const watchedMovie = user.movies.find((movie) => movie.id === id);
 
-        if (movie.id === id) {
-          user.watchedMovies.push(movie);
-          await user.save();
-          console.log("users watched movies", user.watchedMovies);
-        }
+      if (!watchedMovie) {
+        return res.status(404).json({ message: "Movie not found" });
       }
 
+      user.watchedMovies.push(watchedMovie);
+      await user.save();
+      console.log("users watched movies", user.watchedMovies);
+
       const watchedMovies = user.watchedMovies;
-      return res.json({ watchedMovies, user });
+      return res.json({ watchedMovies });
     } catch (error) {
       console.log("edit movie error", error);
       res.status(500).json({ error });
@@ -151,11 +159,11 @@ const dataController = {
 
 const apiController = {
   index(req, res, next) {
-    res.json(res.locals.data.fruits);
+    res.json(res.locals.data.movie);
   },
   show(req, res, next) {
     console.log("Res full", res);
-    res.json(res.locals.data.fruit);
+    res.json(res.locals.data.movie);
   },
 };
 
