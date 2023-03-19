@@ -11,11 +11,11 @@ const {
 //Index
 router.get("/", dataController.index, apiController.index);
 //watched Index
-router.get("/watched", dataController.watchedIndex, apiController.watchedIndex);
+router.get("/watched", dataController.watchedIndex, apiController.show);
 //Delete
 router.delete("/:id", dataController.destroy, apiController.show);
 //Update
-router.put("/:id", dataController.update, apiController.show);
+// router.put("/:id", dataController.update, apiController.show);
 //create
 router.post("/", dataController.create, apiController.show);
 //edit

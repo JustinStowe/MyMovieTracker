@@ -78,10 +78,10 @@ function useHook() {
   //   }
   // }
 
-  async function updateUser(id, movieid) {
+  async function updateUser(id) {
     try {
       // console.log("Controller update movie", movie);
-      const results = await movieApi.updateUser(id, movieid);
+      const results = await movieApi.updateUser(id);
       console.log("Controller update movie", results);
       return results;
     } catch (error) {

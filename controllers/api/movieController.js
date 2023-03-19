@@ -64,6 +64,7 @@ const dataController = {
     next();
   },
   //create
+
   async create(req, res, next) {
     const { imdbID } = req.body;
     try {
@@ -80,7 +81,7 @@ const dataController = {
         });
 
         if (userHasMovie) {
-          alert("You already have this movie in your list");
+          console.log("You already have this movie in your list");
         } else {
           user.movies.push(existingMovie);
           await user.save();
@@ -109,6 +110,7 @@ const dataController = {
   //edit
   async edit(req, res, next) {
     const { id } = req.params;
+    console.log("Req params", req.params);
 
     try {
       const user = await User.findById(req.user._id);
