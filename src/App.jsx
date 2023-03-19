@@ -32,7 +32,7 @@ function App() {
                 element={<WatchedMovies user={user} setUser={setUser} />}
               />
               <Route
-                path="/movie"
+                path="/movie/:id"
                 element={<SingleMovie user={user} setUser={setUser} />}
               />
 
