@@ -4,7 +4,6 @@ import Header from "../../components/Header/Header";
 import { useController } from "../../Controller";
 import Aside from "../../components/Aside/Aside";
 import styles from "./Search.module.scss";
-import { addMovie } from "../../utilities/movies-api";
 
 export default function Search({ user, setUser }) {
   const [input, setInput] = useState("");
