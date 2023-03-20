@@ -36,7 +36,9 @@ function useHook() {
   async function getAllMovies() {
     try {
       const results = await movieApi.getAll();
-      setUserMovies(results);
+      console.log("all movies in con troller", results);
+      setUserMovies([...results]);
+      console.log("movies in controller after set", userMovies);
     } catch (error) {
       console.error(error);
     }

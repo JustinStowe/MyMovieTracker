@@ -1,0 +1,30 @@
+.WatchedMovies {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  //   display: grid;
+  //   grid-template-columns: 1.6fr 3.5fr;
+  //   grid-template-rows: 1fr;
+  border-radius: 2vmin;
+}
+.WatchedMovies .aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.WatchedMovies .div2 {
+  background-color: rgb(34, 33, 33);
+  margin: 3vmin 2vmin;
+  border: solid 20px rgb(22, 19, 19);
+  width: 60rem;
+}
+.WatchedMovies .div3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: 2px solid rgb(69, 14, 14);
+  margin: 20px;
+}
