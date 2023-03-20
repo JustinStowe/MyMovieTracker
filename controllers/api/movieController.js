@@ -84,7 +84,7 @@ const dataController = {
         console.log("userHasMovie:", userHasMovie);
         console.log("userHasWatchedMovie:", userHasWatchedMovie);
         if (userHasMovie || userHasWatchedMovie) {
-          console.log("you already have this movie in your lists");
+          return console.log("you already have this movie in your lists");
         } else {
           user.movies.push(existingMovie);
           await user.save();
