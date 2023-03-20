@@ -1,11 +1,12 @@
 const Comment = require("../../models/comment");
-
+const Movie = require("../../models/Movie");
 const dataController = {
   //index
   async index(req, res, next) {
     try {
-      const foundComments = await Comment.find(req.movie);
-      console.log("all the comments", foundComments);
+      const movie = await Movie.find(req.movie._id).populate("comments");
+      const foundComments = movie.comments;
+      console.log("the found comments", foundComments);
       return res.json(foundComments);
     } catch (error) {
       console.log(error);
@@ -30,7 +31,9 @@ const dataController = {
   async update(req, res, next) {
     const { id } = req.params;
     try {
-      const updatedComment = await Comment.findByIdAndUpdate(id);
+      const updatedComment = await Comment.findByIdAndUpdate(id, req.body, {
+        new: true,
+      });
       console.log("updated comment", updatedComment);
       return updatedComment;
     } catch (error) {
@@ -45,7 +48,7 @@ const dataController = {
       const newComment = await Comment.create(
         { ...req.body },
         req.user._id,
-        req.movie
+        req.movie._id
       );
       console.log("created comment", newComment);
     } catch (error) {
