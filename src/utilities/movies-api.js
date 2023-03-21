@@ -5,7 +5,7 @@ const BASE_URL = "/api/movies";
 export function getAll() {
   return sendRequest(BASE_URL);
 }
-export function getAllWatched() {
+export function getAllComments() {
   return sendRequest(`${BASE_URL}/watched`);
 }
 export function getById(id) {
@@ -17,12 +17,9 @@ export function deleteById(id) {
 }
 
 export function addMovie(movieData) {
-  console.log("Api movieData", movieData);
   return sendRequest(BASE_URL, "POST", movieData);
 }
 
 export function updateUser(id) {
-  // movieData.completed = true;
-  // console.log("Updated movie api", userMovieData);
   return sendRequest(`${BASE_URL}/${id}`, "PUT");
 }
