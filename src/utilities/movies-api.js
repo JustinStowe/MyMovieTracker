@@ -13,7 +13,7 @@ export function getById(id) {
 }
 
 export function deleteById(id) {
-  return sendRequest(`${BASE_URL}/remove/${id}`, "POST");
+  return sendRequest(`${BASE_URL}/remove/${id}`, "PUT");
 }
 
 export function addMovie(movieData) {

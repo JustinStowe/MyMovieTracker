@@ -15,7 +15,7 @@ router.get("/watched", dataController.watchedIndex, apiController.show);
 //Delete
 router.delete("/:id", dataController.destroy, apiController.show);
 //Update
-router.post("/remove/:id", dataController.update, apiController.show);
+router.put("/remove/:id", dataController.update, apiController.show);
 //create
 router.post("/", dataController.create, apiController.show);
 //edit

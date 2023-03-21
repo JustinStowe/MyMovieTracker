@@ -49,7 +49,7 @@ const dataController = {
       // Find the target movie in the user's movies array
       const targetMovieIndex = await User.findOneAndUpdate(
         { _id: req.user._id },
-        { $pull: { movies: id } }
+        { $pull: { movies: id, watchedMovies: id } }
       );
 
       console.log("our found movie", targetMovieIndex);
