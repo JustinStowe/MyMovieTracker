@@ -6,7 +6,7 @@ const dataController = {
     try {
       const user = await User.findById(req.user._id).populate("movies");
       const foundMovies = user.movies;
-      console.log(foundMovies);
+      console.log("the found movies:", foundMovies);
       return res.json(foundMovies);
     } catch (error) {
       res.status(500).json({ error });
@@ -44,8 +44,6 @@ const dataController = {
     const { id } = req.params;
     console.log("id of the movie", id);
     try {
-      const user = await User.findById(req.user._id);
-
       // Find the target movie in the user's movies array
       const targetMovieIndex = await User.findOneAndUpdate(
         { _id: req.user._id },
@@ -68,40 +66,41 @@ const dataController = {
     console.log("IMDB movie", imdbID);
     try {
       //searching for existing movie in database
-      const existingMovie = await Movie.find({
-        imdbID: { $exists: true, $eq: imdbID },
-      });
-      console.log("our existing movie", existingMovie.length);
+      const existingMovie = await Movie.findOne({
+        imdbID: imdbID,
+      }).populate();
+      console.log("the existing movie", existingMovie);
       //if it exists, push it into user movie array
-      if (existingMovie.length > 0) {
+      if (existingMovie) {
         console.log("We did go in here");
         const user = await User.findById(req.user._id).populate("movies");
 
-        const userHasMovie = await User.find({
-          movies: { $elemMatch: { imdbId: imdbID } },
-        });
-        const userHasWatchedMovie = await User.find({
-          watchedMovies: { $elemMatch: { imdbId: imdbID } },
-        });
-        console.log("Movies in user array", userHasMovie);
-        if (userHasMovie.length > 0 && userHasWatchedMovie > 0) {
-          console.log("you already have this movie in your list");
+        const userHasMovie = user.movies.some(
+          (movie) => movie.imdbID === imdbID
+        );
+        const userHasWatchedMovie = user.watchedMovies.some(
+          (movie) => movie.imdbID === imdbID
+        );
+        console.log("userHasMovie:", userHasMovie);
+        console.log("userHasWatchedMovie:", userHasWatchedMovie);
+        if (userHasMovie || userHasWatchedMovie) {
+          return console.log("you already have this movie in your lists");
         } else {
           user.movies.push(existingMovie);
           await user.save();
           console.log("user movie collection", user.movies);
           return res.json(existingMovie);
         }
+      } else {
+        //if the movie doesn't already exist, create it and push it into user's movie array
+        const newMovie = await Movie.create({
+          ...req.body,
+        });
+        const user = await User.findById(req.user._id).populate("movies");
+        user.movies.push(newMovie);
+        await user.save();
+        return res.json(newMovie);
       }
-      //if the movie doesn't already exist, create it and push it into user's movie array
-      const newMovie = await Movie.create({
-        ...req.body,
-      });
-
-      const user = await User.findById(req.user._id).populate("movies");
-      user.movies.push(newMovie);
-      await user.save();
-      return res.json(newMovie);
     } catch (error) {
       console.log("create movie error", error);
       res.status(500).json({ error });
