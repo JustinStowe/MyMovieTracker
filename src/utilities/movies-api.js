@@ -5,7 +5,7 @@ const BASE_URL = "/api/movies";
 export function getAll() {
   return sendRequest(BASE_URL);
 }
-export function getAllWatched() {
+export function getAllComments() {
   return sendRequest(`${BASE_URL}/watched`);
 }
 export function getById(id) {
