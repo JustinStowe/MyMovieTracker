@@ -1,12 +1,26 @@
 import sendRequest from "./send-request.js";
 
-const BASE_URL = `api/movie/${imdbID}`;
+const BASE_URL = "/api/movies";
 
-export function deleteCommentById(imdbID) {
-  return sendRequest(`${BASE_URL}`, "DELETE");
+export function getAllComments() {
+  return sendRequest(BASE_URL);
+}
+export function getAllWatched() {
+  return sendRequest(`${BASE_URL}/watched`);
+}
+export function getById(id) {
+  return sendRequest(`${BASE_URL}/${id}`);
 }
 
-export function addComment(comment) {
-  console.log("Add Comment", comment);
-  return sendRequest(BASE_URL, "POST", comment);
+export function deleteById(id) {
+  return sendRequest(`${BASE_URL}/remove/${id}`, "POST");
+}
+
+export function addComment(commentData) {
+  console.log("Comments", commentData);
+  return sendRequest(BASE_URL, "POST", commentData);
+}
+
+export function updateUser(id) {
+  return sendRequest(`${BASE_URL}/${id}`, "PUT");
 }
