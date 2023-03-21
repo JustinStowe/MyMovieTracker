@@ -7,7 +7,8 @@ const {
   apiController,
 } = require("../../controllers/api/userController");
 const ensureLoggedIn = require("../../config/ensureLoggedIn");
-
+//Get all users
+router.get("/", dataController.index, apiController.index);
 // Post /api/users/login
 router.post("/login", dataController.login, apiController.auth);
 

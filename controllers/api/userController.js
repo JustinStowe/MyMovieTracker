@@ -8,6 +8,15 @@ const checkToken = (req, res) => {
 };
 
 const dataController = {
+  async index(req, res, next) {
+    try {
+      const users = await User.find({});
+      console.log("all the users", users);
+    } catch (error) {
+      console.log("get users error", error);
+      res.status(500).json({ error });
+    }
+  },
   async create(req, res, next) {
     try {
       const user = await User.create(req.body);
@@ -38,6 +47,9 @@ const dataController = {
 };
 
 const apiController = {
+  index(req, res, next) {
+    res.json(res.locals.data.users);
+  },
   auth(req, res) {
     res.json(res.locals.data.token);
   },
