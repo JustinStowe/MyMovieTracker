@@ -1,4 +1,3 @@
-
 import * as usersAPI from "./user-api";
 
 export async function signUp(userData) {
