@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import * as movieApi from "./utilities/movies-api";
-
+import * as userApi from "./utilities/user-api";
 const ControllerContext = createContext({});
 
 export function ProvideController({ children }) {
@@ -20,6 +20,9 @@ function useHook() {
   const [movies, setMovies] = useState([]);
   const [userMovies, setUserMovies] = useState([]);
   const [userWatchedMovies, setUserWatchedMovies] = useState([]);
+  const [comments, setComments] = useState([]);
+  const [friends, setFriends] = useState([]);
+  const [users, setUsers] = useState([]);
   console.log("Control movies", movies);
 
   async function watchedMovie(id, e) {
@@ -68,6 +71,47 @@ function useHook() {
     }
   }
 
+  async function addComment(comment) {
+    try {
+      const newComment = await movieApi.addComment(comment);
+      setComments((current) => [...current, newComment]);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  async function getAllComments() {
+    try {
+      const results = await movieApi.getAllComments();
+      setComments([...results]);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  async function addFriend(friend) {
+    try {
+      const newFriend = await userApi.addFriend(friend);
+      setComments((current) => [...current, newFriend]);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  async function getAllFriends() {
+    try {
+      const results = await userApi.getAllFriends();
+      setFriends([...results]);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function getAllUsers() {
+    try {
+      const results = await userApi.getAllUsers();
+      setUsers([...results]);
+    } catch (error) {
+      console.error(error);
+    }
+  }
   // async function updateMovie(id, movie) {
   //   try {
   //     // console.log("Controller update movie", movie);
@@ -114,6 +158,9 @@ function useHook() {
   }
 
   return {
+    users,
+    friends,
+    comments,
     movies,
     userMovies,
     userWatchedMovies,
@@ -125,5 +172,10 @@ function useHook() {
     addMovies,
     updateUser,
     getAllWatchedMovies,
+    addComment,
+    getAllComments,
+    getAllFriends,
+    addFriend,
+    getAllUsers,
   };
 }

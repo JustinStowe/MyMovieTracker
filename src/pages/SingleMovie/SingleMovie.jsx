@@ -7,26 +7,27 @@ import styles from "./SingleMovie.module.scss";
 
 export function SingleMovie({ user, setUser }) {
   const {
-    movies,
-    deleteMovie,
-    getSingleMovie,
     userMovies,
-    getAllMovies,
     userWatchedMovies,
+    comments,
+    getAllComments,
+    addComment,
   } = useController();
   console.log("usermovies in dsingle", userMovies);
   const { id } = useParams();
   console.log(id);
 
+  const [inputComments, setInputComments] = useState("");
+
   const [text, setText] = useState("");
   useEffect(() => {
     setText("Movie Info");
   }, []);
-  // useEffect(() => {
-  //   if (movies.length < 1) {
-  //     getSingleMovie(movies._id);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (comments.length < 1) {
+      getAllComments();
+    }
+  }, []);
 
   // const movie = userMovies.find((movie) => (movie.id = id));
 
@@ -41,7 +42,20 @@ export function SingleMovie({ user, setUser }) {
   };
 
   const movie = movieFunction();
-  console.log("WTF", movie);
+  console.log("Movie on Single", movie);
+
+  const handleInputChange = (event) => {
+    setInputComments(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    if (event.key === "Enter") {
+      addComment(inputComments);
+      setInputComments("");
+      getAllComments();
+    }
+  };
+
   return (
     <div>
       <div className="header">
@@ -63,7 +77,35 @@ export function SingleMovie({ user, setUser }) {
             <div className={styles.divItem}>
               <h3>Year:</h3> <h3 className="answertext">{movie.Year}</h3>
             </div>
+            <p>You can enter your comments here:</p>
+            <input
+              style={{
+                width: 300,
+              }}
+              type="text"
+              value={inputComments}
+              onChange={handleInputChange}
+              onKeyDown={handleSubmit}
+            />
+            <div>
+              {comments.map((comment) => {
+                return (
+                  <div className={styles.div3} key={comment._id}>
+                    <h3>{comment.body}</h3>
 
+                    {/* <button
+                    className="deleteButton"
+                    onClick={() => {
+                      deleteComment(comment._id);
+                      getAllComments();
+                    }}
+                  >
+                    Delete
+                  </button> */}
+                  </div>
+                );
+              })}
+            </div>
             {/* <button
         className="answer"
         onClick={() => {
