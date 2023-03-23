@@ -52,6 +52,7 @@ app.use("/api/users", require("./routes/api/users"));
 // Protect the API routes below from anonymous users
 
 app.use("/api/movies", ensureLoggedIn, require("./routes/api/movies"));
+app.use("/api/comments", require("./routes/api/comment"));
 
 app.get("/api", (req, res) => {
   res.json({ message: "The API is alive!!!" });

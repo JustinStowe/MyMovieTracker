@@ -8,6 +8,7 @@ const dataController = {
       const foundMovies = user.movies;
       console.log("the found movies:", foundMovies);
       return res.json(foundMovies);
+      // res.locals.data.Movie = foundMovies;
     } catch (error) {
       res.status(500).json({ error });
     }
@@ -121,7 +122,6 @@ const dataController = {
       );
       const movieToPush = await User.findOneAndUpdate(
         { _id: req.user._id },
-
         { $push: { watchedMovies: id } }
       ).populate("watchedMovies");
 
@@ -139,9 +139,10 @@ const dataController = {
   async show(req, res, next) {
     const { id } = req.params;
     try {
-      const targetMovie = await Movie.FindByID(id);
+      const targetMovie = await Movie.findById(id);
       console.log(targetMovie);
-      return targetMovie;
+      // res.locals.data.movie = targetMovie;
+      return res.json(targetMovie);
     } catch (error) {
       console.log("show movie error", error);
       res.status(500).json({ error });
@@ -152,7 +153,7 @@ const dataController = {
 
 const apiController = {
   index(req, res, next) {
-    res.json(res.locals.data.movie);
+    res.json(res.locals.data.movies);
   },
   show(req, res, next) {
     //console.log("Res full", res);

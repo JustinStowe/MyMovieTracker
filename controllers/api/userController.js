@@ -12,8 +12,22 @@ const dataController = {
     try {
       const users = await User.find({});
       console.log("all the users", users);
+      res.locals.data.users = users;
+      // return users;
     } catch (error) {
       console.log("get users error", error);
+      res.status(500).json({ error });
+    }
+    next();
+  },
+  async friendIndex(req, res, next) {
+    try {
+      const user = await User.findById(req.user._id).populate("friends");
+      const friends = user.friends;
+      res.locals.data.friends = friends;
+      next();
+    } catch (error) {
+      console.log("friend index error:", error);
       res.status(500).json({ error });
     }
   },
@@ -47,8 +61,11 @@ const dataController = {
 };
 
 const apiController = {
-  index(req, res, next) {
+  index(req, res) {
     res.json(res.locals.data.users);
+  },
+  friendIndex(req, res) {
+    res.json(res.locals.data.friends);
   },
   auth(req, res) {
     res.json(res.locals.data.token);
