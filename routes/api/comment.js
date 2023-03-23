@@ -13,12 +13,14 @@ const {
 //Index
 router.get("/", dataController.index, apiController.index);
 //Delete
-router.get("/:id", dataController.destroy, apiController.show);
+router.delete("/:id", dataController.destroy, apiController.show);
 //update
-router.post("/update/:id", dataController.update, apiController.show);
+router.put("/update/:id", dataController.update, apiController.show);
 //create
 router.post("/", dataController.create, apiController.show);
 //edit
 //show
 router.get("/:id", dataController.show, apiController.show);
 //
+
+module.exports = router;

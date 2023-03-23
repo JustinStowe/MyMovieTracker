@@ -7,7 +7,8 @@ const dataController = {
       const movie = await Movie.find(req.movie._id).populate("comments");
       const foundComments = movie.comments;
       console.log("the found comments", foundComments);
-      return res.json(foundComments);
+      res.locals.data.comments = foundComments;
+      // return res.json(foundComments);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error });
@@ -20,6 +21,7 @@ const dataController = {
     try {
       const deleteComment = await Comment.findByIdAndDelete(id);
       console.log("the deleted comment", deleteComment);
+
       return;
     } catch (error) {
       console.log("deleted comment error", error);
@@ -51,6 +53,7 @@ const dataController = {
         req.movie._id
       );
       console.log("created comment", newComment);
+      return newComment;
     } catch (error) {
       console.log("created comment error", error);
       res.status(500).json({ error });
@@ -64,7 +67,7 @@ const dataController = {
     try {
       const targetComment = await Comment.findById(id);
       console.log("show route comment", targetComment);
-      return targetComment;
+      res.locals.data.comment = targetComment;
     } catch (error) {
       console.log("show route comment error", error);
       res.status(500).json({ error });

@@ -5,8 +5,8 @@ const commentSchema = new mongoose.Schema(
     title: { type: String, required: true },
     body: { type: String, required: true },
     private: { type: Boolean, required: true, default: false },
-    username: { type: mongoose.Schema.Types.objectId, ref: "User" },
-    movie: { type: mongoose.Schema.Types.objectId, ref: "Movie" },
+    username: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    movie: { type: mongoose.Schema.Types.ObjectId, ref: "Movie" },
   },
   {
     timestamps: true,

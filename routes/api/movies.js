@@ -11,7 +11,7 @@ const {
 //Index
 router.get("/", dataController.index, apiController.index);
 //watched Index
-router.get("/watched", dataController.watchedIndex, apiController.show);
+router.get("/watched", dataController.watchedIndex, apiController.index);
 //Delete
 router.delete("/:id", dataController.destroy, apiController.show);
 //Update

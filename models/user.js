@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
 
-      minLength: 3,
+      minlength: 3,
       required: true,
     },
     picture: { type: String, required: false },
@@ -29,6 +29,7 @@ const userSchema = new mongoose.Schema(
     ],
     movies: [{ type: mongoose.Schema.Types.ObjectId, ref: "Movie" }],
     watchedMovies: [{ type: mongoose.Schema.Types.ObjectId, ref: "Movie" }],
+    friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   },
   {
     timestamps: true,
