@@ -10,3 +10,15 @@ export function login(credentials) {
   console.log(credentials);
   return sendRequest(`${BASE_URL}/login`, "POST", credentials);
 }
+
+export function getAllUsers() {
+  return sendRequest(BASE_URL);
+}
+
+export function addFriend(friend) {
+  return sendRequest(BASE_URL, "POST", friend);
+}
+
+export function getAllFriends() {
+  return sendRequest(`${BASE_URL}/friends`);
+}
