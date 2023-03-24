@@ -10,7 +10,8 @@ const checkToken = (req, res) => {
 const dataController = {
   async index(req, res, next) {
     try {
-      const users = await User.find({});
+      const loggedInUser = req.user._id;
+      const users = await User.find({ _id: { $ne: loggedInUser } });
       console.log("all the users", users);
       res.locals.data.users = users;
       // return users;
@@ -28,6 +29,22 @@ const dataController = {
       next();
     } catch (error) {
       console.log("friend index error:", error);
+      res.status(500).json({ error });
+    }
+  },
+  async addFriend(req, res, next) {
+    const friendId = req.body.friend;
+    console.log("friend data", friendId);
+    try {
+      const user = await User.findById(req.user._id).populate("friends");
+      if (user.friends.includes(friendId)) {
+        return res.status(400).json({ message: "You are already friends" });
+      }
+      user.friends.push(friendId);
+      await user.save();
+      res.status(200).json({ message: "Friend added successfully." });
+    } catch (error) {
+      console.log("add a friend error", error);
       res.status(500).json({ error });
     }
   },
