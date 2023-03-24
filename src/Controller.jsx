@@ -72,9 +72,9 @@ function useHook() {
     }
   }
 
-  async function addComment(comment) {
+  async function addComment(comment, movieId) {
     try {
-      const newComment = await commentsApi.addComment(comment);
+      const newComment = await commentsApi.addComment(comment, movieId);
       setComments((current) => [...current, newComment]);
     } catch (error) {
       console.error(error);

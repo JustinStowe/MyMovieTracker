@@ -14,9 +14,9 @@ export function deleteById(id) {
   return sendRequest(`${BASE_URL}/remove/${id}`, "POST");
 }
 
-export function addComment(commentData) {
+export function addComment(commentData, movieId) {
   console.log("Comments", commentData);
-  return sendRequest(BASE_URL, "POST", commentData);
+  return sendRequest(BASE_URL, "POST", commentData, movieId);
 }
 
 export function updateUser(id) {
