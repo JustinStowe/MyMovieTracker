@@ -16,7 +16,7 @@ export function getAllUsers() {
 }
 
 export function addFriend(friend) {
-  return sendRequest(BASE_URL, "POST", friend);
+  return sendRequest(`${BASE_URL}/friends`, "PUT", friend);
 }
 
 export function getAllFriends() {
