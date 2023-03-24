@@ -11,6 +11,8 @@ const ensureLoggedIn = require("../../config/ensureLoggedIn");
 router.get("/", dataController.index, apiController.index);
 //get all user's friends
 router.get("/friends", dataController.friendIndex, apiController.index);
+//Add a friend
+router.put("/friends", dataController.addFriend);
 // Post /api/users/login
 router.post("/login", dataController.login, apiController.auth);
 
