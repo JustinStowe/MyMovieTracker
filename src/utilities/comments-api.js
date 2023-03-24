@@ -1,6 +1,6 @@
 import sendRequest from "./send-request.js";
 
-const BASE_URL = "/api/movies";
+const BASE_URL = "/api/comments";
 
 export function getAllComments() {
   return sendRequest(BASE_URL);

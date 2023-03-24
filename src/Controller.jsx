@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import * as movieApi from "./utilities/movies-api";
 import * as userApi from "./utilities/user-api";
+import * as commentsApi from "./utilities/comments-api";
 const ControllerContext = createContext({});
 
 export function ProvideController({ children }) {
@@ -73,7 +74,7 @@ function useHook() {
 
   async function addComment(comment) {
     try {
-      const newComment = await movieApi.addComment(comment);
+      const newComment = await commentsApi.addComment(comment);
       setComments((current) => [...current, newComment]);
     } catch (error) {
       console.error(error);
@@ -81,7 +82,7 @@ function useHook() {
   }
   async function getAllComments() {
     try {
-      const results = await movieApi.getAllComments();
+      const results = await commentsApi.getAllComments();
       setComments([...results]);
     } catch (error) {
       console.error(error);
