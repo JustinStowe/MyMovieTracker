@@ -15,7 +15,7 @@ export function SingleMovie({ user, setUser }) {
   } = useController();
   console.log("usermovies in dsingle", userMovies);
   const { id } = useParams();
-  console.log(id);
+  console.log("Single movie id", id);
 
   const [inputComments, setInputComments] = useState("");
 
@@ -50,7 +50,7 @@ export function SingleMovie({ user, setUser }) {
 
   const handleSubmit = (event) => {
     if (event.key === "Enter") {
-      addComment(inputComments);
+      addComment(inputComments, id);
       setInputComments("");
       getAllComments();
     }

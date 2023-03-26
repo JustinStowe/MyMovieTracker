@@ -1,6 +1,6 @@
 import sendRequest from "./send-request.js";
 
-const BASE_URL = "/api/movies";
+const BASE_URL = "/api/comments";
 
 export function getAllComments() {
   return sendRequest(BASE_URL);
@@ -14,9 +14,9 @@ export function deleteById(id) {
   return sendRequest(`${BASE_URL}/remove/${id}`, "POST");
 }
 
-export function addComment(commentData) {
+export function addComment(commentData, movieId) {
   console.log("Comments", commentData);
-  return sendRequest(BASE_URL, "POST", commentData);
+  return sendRequest(BASE_URL, "POST", commentData, movieId);
 }
 
 export function updateUser(id) {

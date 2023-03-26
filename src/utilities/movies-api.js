@@ -23,11 +23,3 @@ export function addMovie(movieData) {
 export function updateUser(id) {
   return sendRequest(`${BASE_URL}/${id}`, "PUT");
 }
-
-export function getAllComments() {
-  return sendRequest(`${BASE_URL}/comments`);
-}
-
-export function addComment(comment) {
-  return sendRequest(`${BASE_URL}/comments`, "POST", comment);
-}
