@@ -49,6 +49,7 @@ export function SingleMovie({ user, setUser }) {
   };
 
   const handleSubmit = (event) => {
+    console.log("movie id in single before sent to controller", id);
     if (event.key === "Enter") {
       addComment(inputComments, id);
       setInputComments("");

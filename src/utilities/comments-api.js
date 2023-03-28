@@ -15,8 +15,11 @@ export function deleteById(id) {
 }
 
 export function addComment(commentData, movieId) {
-  console.log("Comments", commentData);
-  return sendRequest(BASE_URL, "POST", commentData, movieId);
+  console.log("Comments", commentData, movieId);
+  return sendRequest(BASE_URL, "POST", {
+    body: commentData,
+    movieId: movieId,
+  });
 }
 
 export function updateUser(id) {
