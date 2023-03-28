@@ -18,7 +18,7 @@ export function addComment(commentData, movieId) {
   console.log("Comments", commentData, movieId);
   return sendRequest(BASE_URL, "POST", {
     body: commentData,
-    movieId: movieId,
+    _id: movieId,
   });
 }
 

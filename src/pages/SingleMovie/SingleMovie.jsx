@@ -13,7 +13,7 @@ export function SingleMovie({ user, setUser }) {
     getAllComments,
     addComment,
   } = useController();
-  console.log("usermovies in dsingle", userMovies);
+  console.log("usermovies in single", userMovies);
   const { id } = useParams();
   console.log("Single movie id", id);
 
