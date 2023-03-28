@@ -3,6 +3,7 @@ const Movie = require("../../models/Movie");
 const dataController = {
   //index
   async index(req, res, next) {
+    console.log("index req", res);
     try {
       const movie = await Movie.find(req.movie.id).populate("comments");
       const foundComments = movie.comments;
@@ -46,11 +47,12 @@ const dataController = {
   },
   //create
   async create(req, res, next) {
+    console.log("comments req", req.body);
     try {
       const newComment = await Comment.create(
-        { ...req.body },
-        req.user._id,
-        req.movie._id
+        req.body
+        // req.user._id,
+        // req.movie._id
       );
       console.log("created comment", newComment);
       return newComment;

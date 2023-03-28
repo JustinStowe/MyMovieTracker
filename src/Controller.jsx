@@ -73,6 +73,7 @@ function useHook() {
   }
 
   async function addComment(comment, movieId) {
+    console.log("controller movie id", movieId);
     try {
       const newComment = await commentsApi.addComment(comment, movieId);
       setComments((current) => [...current, newComment]);
