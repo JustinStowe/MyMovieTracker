@@ -4,7 +4,7 @@ const dataController = {
   //index
   async index(req, res, next) {
     try {
-      const movie = await Movie.find(req.movie._id).populate("comments");
+      const movie = await Movie.find(req.movie.id).populate("comments");
       const foundComments = movie.comments;
       console.log("the found comments", foundComments);
       res.locals.data.comments = foundComments;
