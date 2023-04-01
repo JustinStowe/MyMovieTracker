@@ -47,27 +47,28 @@ const dataController = {
     next();
   },
   //create
+  // Define a pre-findOne middleware to populate comments field
+
   async create(req, res, next) {
-    const { id } = req.params;
+    console.log("The req.body.movieId:", req.body._id);
     // console.log("comments req", req.body);
     try {
-      const newComment = await Comment.create({ ...req.body });
-      console.log("the created comment", newComment);
       const user = await User.findById(req.user._id);
+      const newComment = await Comment.create(req.body);
+      console.log("the created comment", newComment);
       console.log("the found user", user);
       newComment.username = user;
       await newComment.save();
-      const targetMovie = await Movie.findOneAndUpdate(
-        { _id: id },
-        { $push: { comments: newComment._id } }
-      );
+      user.comments.push(newComment);
+      user.save();
+      const targetMovie = await Movie.findById(req.body.id);
       console.log("the target movie", targetMovie);
-      // targetMovie.comments.push(newComment);
-      // await targetMovie.save();
-      // console.log("the movie comments", targetMovie.comments);
-      res.locals.data.movie = targetMovie;
+      targetMovie.comments.push(newComment);
+      await targetMovie.save();
+      console.log("the movie comments", targetMovie.comments);
     } catch (error) {
-      console.log("created comment error", error);
+      // Handle any errors that might occur
+      console.log("create comment error:", error);
       res.status(500).json({ error });
     }
     next();
