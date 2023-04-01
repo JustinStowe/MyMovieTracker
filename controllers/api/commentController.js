@@ -50,7 +50,7 @@ const dataController = {
   // Define a pre-findOne middleware to populate comments field
 
   async create(req, res, next) {
-    console.log("The req.body.movieId:", req.body.movieId);
+    console.log("The req.body.movieId:", req.body._id);
     // console.log("comments req", req.body);
     try {
       const user = await User.findById(req.user._id);
@@ -61,7 +61,7 @@ const dataController = {
       await newComment.save();
       user.comments.push(newComment);
       user.save();
-      const targetMovie = await Movie.findById(req.body.movieId);
+      const targetMovie = await Movie.findById(req.body.id);
       console.log("the target movie", targetMovie);
       targetMovie.comments.push(newComment);
       await targetMovie.save();
