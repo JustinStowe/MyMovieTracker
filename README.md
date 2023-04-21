@@ -1,3 +1,5 @@
+
+
 <!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 
 <a name="readme-top"></a>
@@ -79,7 +81,7 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://github.com/JustinStowe/MyMovieTracker)
 
 <!-- Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `JustinStowe`, `MyMovieTracker`, `shadowangel1234`, `Justin Stowe`, `Google`, `justinstowe12@gmail.com`, `My Movie Tracker`, `This app allows you to search for any movie and add it to a list of movies you would like to watch. Once you have watched it, you are able to then add it to your watched movies list. You are also able to make comments for any other user to see on each movie to let them know your thoughts on the movie.` -->
 
@@ -91,7 +93,7 @@
 
 - [![React][react.js]][react-url]
 - [![Express][express.js]][express-url]
-- [![MongoDB][mongodb]][mongo-url]
+- [![Mongo][mongo.js]][mongo-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -210,12 +212,13 @@ Project Link: [https://github.com/JustinStowe/MyMovieTracker](https://github.com
 [license-url]: https://github.com/JustinStowe/MyMovieTracker/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 
-[linkedin-url]: https://linkedin.com/in/Justin Stowe
-[product-screenshot]: images/screenshot.png
-[MongoDB]: https://webimages.mongodb.com/_com_assets/cms/kuyjf3vea2hg34taa-horizontal_default_slate_blue.svg?auto=format%252Ccompress"
-[Express]:https://initialcommit.com/img/initialcommit/beginners-guide-to-using-express-js-and-node-js-framework.png
+[linkedin-url]: https://linkedin.com/in/JustinStowe
+[product-screenshot]: https://user-images.githubusercontent.com/110639329/233697716-7af1e6f7-e7fa-4ec4-921a-71885c443309.jpg
+horizontal_default_slate_blue.svg?auto=format%252Ccompress"
+[Express.js]: https://img.shields.io/badge/-Express-green
 [Express-url]:https://expressjs.com/
-[Mongo-url]: https://www.mongodb.com/
+[mongo.js]: https://img.shields.io/badge/-MongoDB-blue
+[mongo-url]: https://www.mongodb.com/
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
