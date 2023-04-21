@@ -181,7 +181,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-Your Name - [@shadowangel1234](https://twitter.com/shadowangel1234) - justinstowe12@gmail.com@Google.com
+Justin Stowe - [@shadowangel1234](https://twitter.com/shadowangel1234) - justinstowe12@gmail.com
 
 Project Link: [https://github.com/JustinStowe/MyMovieTracker](https://github.com/JustinStowe/MyMovieTracker)
 
