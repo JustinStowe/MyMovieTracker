@@ -214,11 +214,9 @@ Project Link: [https://github.com/JustinStowe/MyMovieTracker](https://github.com
 
 [linkedin-url]: https://linkedin.com/in/JustinStowe
 [product-screenshot]: https://user-images.githubusercontent.com/110639329/233697716-7af1e6f7-e7fa-4ec4-921a-71885c443309.jpg
-horizontal_default_slate_blue.svg?auto=format%252Ccompress"
 [Express.js]: https://img.shields.io/badge/-Express-green
 [Express-url]:https://expressjs.com/
 [mongo.js]: https://img.shields.io/badge/-MongoDB-blue
 [mongo-url]: https://www.mongodb.com/
-[Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
