@@ -32,7 +32,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/JustinStowe/MyMovieTracker">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://user-images.githubusercontent.com/110639329/233704909-170868e2-f051-42e6-b733-8a77e037d9b9.jpg" alt="Logo" width="80" height="80>
   </a>
 
 <h3 align="center">My Movie Tracker</h3>
