@@ -54,7 +54,7 @@ const dataController = {
     // console.log("comments req", req.body);
     try {
       const user = await User.findById(req.user._id);
-      const newComment = await Comment.create(req.body);
+      const newComment = await Comment.create(req.body.body);
       console.log("the created comment", newComment);
       console.log("the found user", user);
       newComment.username = user;

@@ -12,7 +12,11 @@ export function SingleMovie({ user, setUser }) {
     comments,
     getAllComments,
     addComment,
+    getAllMovies,
   } = useController();
+
+  // useEffect(() => getAllMovies(), []);
+
   console.log("usermovies in single", userMovies);
   const { id } = useParams();
   console.log("Single movie id", id);
@@ -57,6 +61,9 @@ export function SingleMovie({ user, setUser }) {
     }
   };
 
+  useEffect(() => {
+    getAllMovies();
+  }, []);
   return (
     <div>
       <div className="header">
@@ -78,7 +85,7 @@ export function SingleMovie({ user, setUser }) {
             <div className={styles.divItem}>
               <h3>Year:</h3> <h3 className="answertext">{movie.Year}</h3>
             </div>
-            <p>You can enter your comments here:</p>
+            {/* <p>You can enter your comments here:</p>
             <input
               style={{
                 width: 300,
@@ -87,7 +94,7 @@ export function SingleMovie({ user, setUser }) {
               value={inputComments}
               onChange={handleInputChange}
               onKeyDown={handleSubmit}
-            />
+            /> */}
             <div>
               {comments.map((comment) => {
                 return (
